@@ -36,4 +36,16 @@ public class Member {
 
     private LocalDateTime updDt;
 
+    @Builder
+    public Member(String email, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
+        this.email = email;
+        this.password = password;
+        this.nickName = nickName;
+        this.mobile = mobile;
+        this.msgYn = msgYn;
+        this.msgId = msgId;
+        this.delYn = delYn;
+        this.regDt = regDt;
+        this.updDt = updDt;
+    }
 }

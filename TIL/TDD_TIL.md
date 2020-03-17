@@ -32,6 +32,7 @@
 
 
 
+
 ### Mock MVC
 
 - MockMvc를 사용하면 해당 URL의 상태값, 반환값에 대한 테스트 수행
@@ -50,7 +51,8 @@
   - andExpect(status.isOk()) : 상태값이 200인지 테스트
   - andExpect(view().name("member/memberList")) : 반환되는 뷰 이름 테스트
   - andExpect(model().attributeExist("memberList")) : 모델 프로퍼티 중에 memberList가 있는지 확인
-  - andExpect(model().attribute("memberList",contains(member))) : memberList 프로퍼티에 book객체가 있는지 확인 [미작동]
+  - andExpect(model().attribute("memberList",contains(member))) : memberList 프로퍼티에 book객체가 있는지 확인 
+    - 
 
 - MemberController.java
 
@@ -64,4 +66,22 @@
 
   
 
-​	
+## @DataJpaTest
+
+- @DataJpaTest 어노테이션은 JPA 관련 테스트 설정만 로드
+
+- 테스트가 끝날 때마다 사용한 데이터를 롤백
+
+  ```java
+  @RunWith(SpringRunner.class)
+  @DataJpaTest
+  @ActiveProfiles("...")
+  @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+  public CLass JpaTest{
+  
+  }
+  ```
+
+  - AutoConfigureTestDatabase 기본 값이 Replace.Any인 경우 내장된 데이터소스를 사용
+  - Replace.NONE의 경우 ActivateProfiles에 설정한 데이터소스가 적용
+

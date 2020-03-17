@@ -4,7 +4,180 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
 </head>
-<body>
+<link rel='stylesheet' href='/css/member/signUp.css'>
+<style>
 
+
+</style>
+<body>
+<form id='formData'>
+    <div id="mainDiv">
+        <div class="title">
+            <span id="registration">Registration</span>
+            <input type="radio" value="일반회원" id="type1" name="type" checked="checked"/>
+            <label for="type1" class="radio">일반회원</label>
+            <input type="radio" value="아티스트" id="type2" name="type"/>
+            <label for="type2" class="radio">아티스트</label>
+        </div>
+
+        <div id="formDivOne">
+            <div id="divOne">
+                <div id="photoInputDiv">
+                    <div class="photoPositioning">
+                        <div class="accounttype">
+                        </div>
+
+                        <div id="image-cropper">
+                            <h4>프로필 이미지</h4>
+                            <div class="cropit-preview profile"></div>
+                            <input type="file" class="cropit-image-input">
+                            <input id="cropit-range" type="range" class="cropit-image-zoom-input">
+                            <button id="cuttingBtn" type="button" style="display: inline-block;">사진 자르기</button>
+                            <input type="hidden" name="base64Image" id="hidden-image-data" value=""/>
+                            <div class="checkMessages" id="chkImageMsg">
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="personalInfoDiv">
+                    <div class="PersonalPositioning">
+                        <div id="emailDiv">
+                            <h4>개인 정보 입력</h4>
+                            <label id="icon" for="email"><i class="icon-envelope" style="margin-left:-2px;"></i></label>
+                            <input type="email" id='email' name="email" onkeyup="checkEmail()" placeholder="example@email.com" required/>
+                            <div class="checkMessages" id="chkEmailMsg">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="nickNameDiv">
+                            <label id="icon" for="nickName"><i class="icon-user"></i></label>
+                            <input type="text" id="nickName" name="nickName" onkeyup="checkNickName()" placeholder="닉네임" required/>
+                            <div class="checkMessages" id="chkNickMsg">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="passwordDiv">
+                            <label id="icon" for="password"><i class="icon-shield"></i></label>
+                            <input type="password" id="password" name="password" onkeyup="checkPassword()" placeholder="비밀번호" required/>
+                            <div class="checkMessages">
+                            </div>
+                        </div>
+
+                        <div id="pwConfirmDiv">
+                            <label id="icon" for="pwConfirm"><i class="icon-shield"></i></label>
+                            <input type="password" id="pwConfirm" name="pwConfirm" onkeyup="confirmPassword()" placeholder="비밀번호 확인" required/>
+                            <div class="checkMessages" id="chkPwMsg">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="messageFlagDiv">
+                            <input type="radio" id="messageFlag1" name="messageFlag" value="1" checked="checked">
+                            <label for="messageFlag1" class="radio">메시지 수신</label>
+                            <input type="radio" id="messageFlag2" name="messageFlag" value="0">
+                            <label for="messageFlag2" class="radio">메시지 거부</label>
+                        </div>
+
+                        <div id='messageIdDiv'>
+                            <label id="icon" for='messageId'><i class="icon-user"></i></label>
+                            <input type='text' id='messageId' name='messageId' placeholder="카카오톡 ID">
+                            <div class="checkMessages" id="chkMessageId">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="divTwo">
+                <div id="artistInfoDiv">
+
+                    <div class="artistPositioning">
+                        <h3 style="margin-top:10px;">아티스트 정보</h3>
+
+                        <div id="artistNameDiv">
+                            <label id="icon" for='artistName'><i class="icon-male"></i></label>
+                            <input id='artistName' type='text' name='artist.artistName' value="" placeholder="아티스트/팀명">
+                            <div class="checkMessages" id="chkArtistName">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="artistMemberDiv">
+                            <label id="icon" for='artistMember'><i class="icon-male"></i></label>
+                            <input id='artistMember' type='text' name='artist.artistMember'
+                                   value="" placeholder="팀 구성원">
+                            <div class="checkMessages" id="chkArtistMember">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="joinDateDiv">
+                            <label id="icon" for='joinDate'><i class="icon-male"></i></label>
+                            <input id='joinDate' type='date' placeholder="팀 결성 날짜">
+                            <div class="checkMessages" id="chkJoinDate">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div id="profileDiv">
+                            <textarea id='profile' name='artist.profile' placeholder="아티스트 프로필"></textarea>
+                            <div class="checkMessages" id="chkProfile">
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="InterestInfoDiv" style="margin-top: 30px; margin-bottom: 30px;">
+
+                    <div id="interestAreasDiv">
+                        <label for='interestAreas' id="interestAreas">관심 지역</label>
+
+                        <div id="areasDiv" class="positioning">
+                            <table id="areasTable">
+                                <tbody id="areasTbody">
+                                </tbody>
+                            </table>
+                            <div class="checkMessages" id="chkAreas" style="color:red;">
+                                <p></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="interestgenresDiv">
+                        <label for='interestgenres' id='interestgenres'>관심 장르</label>
+
+                        <div id="genresDiv" class="positioning">
+                            <table id="genresTable">
+                                <tbody id="genresTbody">
+                                </tbody>
+                            </table>
+                            <div class="checkMessages" id="chkGenres" style="color:red;">
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- div two end -->
+
+        </div>
+        <button class="button" id="addBtn" type="button" style="text-align: center;">회원 가입</button>
+    </div>
+</form>
 </body>
 </html>
