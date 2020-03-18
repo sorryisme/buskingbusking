@@ -1,0 +1,108 @@
+#mainDiv{
+    margin: 20px auto;
+    width: 770px;
+    height: 930px;
+    -webkit-border-radius: 8px/7px;
+    -moz-border-radius: 8px/7px;
+    border-radius: 8px/7px;
+    background-color: #ebebeb;
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 1px #cbc9c9;
+}
+
+.title{
+    width: 500px;
+    margin-top: 30px;
+    margin-left: 300px;
+}
+
+.title span{
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.profile {
+    margin-top: 40px;
+}
+
+div.photoPositioning {
+    margin-left: 10px;
+}
+
+div.personalPositioning {
+    margin-left: 10px;
+}
+
+div.artistPositioning {
+    margin-left: 10px;
+}
+
+#photoInputDiv {
+    margin: 10px 10px 5px 20px;
+    float:left;
+    width: 350px;
+    height: 400px;
+/*   background-color: green; */
+}
+
+#personalInfoDiv {
+    margin: 0px 20px 5px 20px;
+    float:left;
+    width: 350px;
+    height: 410px;
+/*   background-color: blue; */
+    position:relative;
+}
+#emailDiv {
+    margin-top: 30px;
+}
+
+#artistInfoDiv {
+    margin: 50px 10px 20px 20px;
+    float:left;
+    width: 730px;
+    height: 250px;
+}
+
+#InterestInfoDiv {
+    margin: 50px 20px 20px 20px;
+    float:left;
+    width: 720px;
+    height: 200px;
+    position:relative;
+}
+
+div#artistNameDiv {
+    float: left;
+}
+
+div#artistMemberDiv {
+    float: left;
+    margin-left: 55px;
+}
+
+div#joinDateDiv {
+    float: left;
+}
+
+div#profileDiv {
+margin-bottom: 50px;
+}
+
+textarea {
+width: 680px;
+height: 100px;
+-webkit-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+-moz-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+background-color: #fff;
+-webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+-moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+border: solid 1px #cbc9c9;
+margin-left: 15px;
+margin-top: 20px;
+margin-bottom: 0px;
+}

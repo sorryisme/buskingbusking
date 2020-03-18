@@ -29,7 +29,6 @@ public class MemberControllerTest {
     private MemberService memberService;
 
     @Test
-    @DisplayName("회원가입_페이지이동")
     public void member_sign_Up() throws Exception{
         mvc.perform(get("/member/signUp"))
                                             .andExpect(status().isOk())
@@ -37,7 +36,6 @@ public class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("회원조회_전체조회")
     public void member_get_List() throws Exception {
         Member member = new Member();
         given(memberService.getMemberList()).willReturn(Collections.singletonList(member));
