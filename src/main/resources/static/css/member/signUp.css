@@ -5,18 +5,54 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 
 
-*{margin:0;padding:0;}
-a { text-decoration: none; color: #222;}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
 @charset "UTF-8";
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,
-pre, form, fieldset, input, p, blockquote, th, td {
-    padding:0;
-    margin:0;}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    padding: 0;
+    margin: 0;
+}
 
-fieldset, img {border:0}
+fieldset,
+img {
+    border: 0
+}
 
-ol, ul, li {list-style:none}
+ol,
+ul,
+li {
+    list-style: none
+}
 
 body,
 input,
@@ -25,7 +61,6 @@ select {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: #4c4c4c;
-
 }
 
 p {
@@ -34,7 +69,29 @@ p {
     margin-left: 22px;
 }
 
-h2#registration {
+hr {
+    color: #a9a9a9;
+    opacity: 0.3;
+}
+
+textarea {
+    width: 680px;
+    height: 100px;
+    -webkit-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
+    background-color: #fff;
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    border: solid 1px #cbc9c9;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+
+.registration {
     font-size: 32px;
     font-weight: 500;
     color: #4c4c4c;
@@ -43,44 +100,24 @@ h2#registration {
     /* margin-bottom: 10px; */
 }
 
-p#guidance {
-    font-size: 15px;
-    font-weight: 800;
-    color: red;
-    padding-top: 10px;
-    margin-left: 30px;
+/* 타이틀 */
+.title {
+    width: 500px;
+    margin-top: 30px;
+    margin-left: 300px;
 }
 
-html{
-    background-color: #ffffff;
+.title span {
+    font-size: 24px;
+    font-weight: bolder;
 }
-
-.joinbox {
-    margin: 20px auto;
-    width: 390px;
-    height: 1600px;
-    -webkit-border-radius: 8px/7px;
-    -moz-border-radius: 8px/7px;
-    border-radius: 8px/7px;
-    background-color: #ebebeb;
-    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
-    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
-    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
-    border: solid 1px #cbc9c9;
-
-}
-
-/* form{
-  margin: 0 30px;
-} */
 
 /* 라디오 꾸미기 */
-
 input[type=radio] {
     visibility: hidden;
 }
 
-label.radio {
+.radioLable {
     cursor: pointer;
     text-indent: 35px;
     overflow: visible;
@@ -89,20 +126,18 @@ label.radio {
     margin-bottom: 15px;
 }
 
-
-label.radio:before {
+.radioLable:before {
     background: #1a1c26;
-    content:'';
+    content: '';
     position: absolute;
-    top:2px;
+    top: 2px;
     left: 0;
     width: 20px;
     height: 20px;
     border-radius: 100%;
 }
 
-
-label.radio:after {
+.radioLable:after {
     opacity: 0;
     content: '';
     position: absolute;
@@ -122,12 +157,10 @@ label.radio:after {
     transform: rotate(-45deg);
 }
 
-label#icon {
-    width: 28px;
-}
+/* 체크 박스 */
 
-i.icon-male {
-    margin-left:2px;
+input[type=checkbox] {
+    visibility: hidden;
 }
 
 
@@ -135,22 +168,48 @@ input[type=radio]:checked + label:after {
     opacity: 1;
 }
 
-hr{
-    color: #a9a9a9;
-    opacity: 0.3;
+
+/*  아이콘 관련 */
+label#icon {
+    width: 28px;
+}
+
+i.icon-male {
+    margin-left: 2px;
+}
+
+#icon {
+    display: inline-block;
+    width: 30px;
+    height: 23px;
+    background-color: #1a1c26;
+    padding: 10px 0px 7px 15px;
+    margin-left: 15px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+    border-radius: 4px 0px 0px 4px;
+    color: white;
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    border: solid 0px #cbc9c9;
 }
 
 
-input[type=text], input[type=password], input[type=email], input[type=date] {
+/* input box 관련 css */
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=date] {
     width: 240px;
     height: 39px;
     -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
     -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
     border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
     background-color: #fff;
-    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-    box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
     border: solid 1px #cbc9c9;
     margin-left: -5px;
     margin-top: 13px;
@@ -165,40 +224,22 @@ input[type=range] {
 
 }
 
-#profile::-webkit-input-placeholder{
+#profile::-webkit-input-placeholder {
     font-size: 18px;
     margin-left: 100px;
 }
 
-
-
 input[type=file] {
-    margin: 10px 0px 10px 40px ;
+    margin: 10px 0px 10px 40px;
 }
 
-#icon {
-    display: inline-block;
-    width: 30px;
-    height: 23px;
-    background-color: #1a1c26;
-    padding: 10px 0px 7px 15px;
-    margin-left: 15px;
-    -webkit-border-radius: 4px 0px 0px 4px;
-    -moz-border-radius: 4px 0px 0px 4px;
-    border-radius: 4px 0px 0px 4px;
-    color: white;
-    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-    box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-    border: solid 0px #cbc9c9;
-}
 
 #messageFlagDiv {
     margin-left: 8px;
     margin-top: 20px;
 }
 
-.accounttype{
+.accounttype {
     margin-left: 15px;
     margin-top: 20px;
 }
@@ -212,14 +253,15 @@ a.button {
     display: inline-block;
     float: right;
     text-decoration: none;
-    width: 50px; height: 27px;
+    width: 50px;
+    height: 27px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color: #1a1c26;
-    -webkit-box-shadow: 0 3px rgba(58,87,175,.75);
-    -moz-box-shadow: 0 3px rgba(58,87,175,.75);
-    box-shadow: 0 3px rgba(58,87,175,.75);
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
     transition: all 0.1s linear 0s;
     top: 0px;
     position: relative;
@@ -227,7 +269,7 @@ a.button {
 
 a.button:hover {
     top: 3px;
-    background-color:#2e458b;
+    background-color: #2e458b;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -242,14 +284,15 @@ a.button:hover {
     margin: 100px 8px 0px 230px;
     display: inline-block;
     text-decoration: none;
-    width: 300px; height: 40px;
+    width: 300px;
+    height: 40px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color: #1a1c26;
-    -webkit-box-shadow: 0 3px rgba(58,87,175,.75);
-    -moz-box-shadow: 0 3px rgba(58,87,175,.75);
-    box-shadow: 0 3px rgba(58,87,175,.75);
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
     transition: all 0.1s linear 0s;
     top: 0px;
     position: relative;
@@ -268,7 +311,7 @@ div#messageIdDiv {
 
 #addBtn:hover {
     top: 3px;
-    background-color:#2e458b;
+    background-color: #2e458b;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -282,14 +325,15 @@ div#messageIdDiv {
     margin: 0px 8px 0px 13px;
     display: inline-block;
     text-decoration: none;
-    width: 300px; height: 40px;
+    width: 300px;
+    height: 40px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color: #1a1c26;
-    -webkit-box-shadow: 0 3px rgba(58,87,175,.75);
-    -moz-box-shadow: 0 3px rgba(58,87,175,.75);
-    box-shadow: 0 3px rgba(58,87,175,.75);
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
     transition: all 0.1s linear 0s;
     top: 0px;
     position: relative;
@@ -297,7 +341,7 @@ div#messageIdDiv {
 
 #cuttingBtn:hover {
     top: 3px;
-    background-color:#2e458b;
+    background-color: #2e458b;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -312,7 +356,8 @@ input#type2 {
     color: blue;
 }
 
-label#interestAreas, label#interestgenres {
+label#interestAreas,
+label#interestgenres {
     font-size: 18px;
     font-weight: 800;
     display: block;
@@ -322,91 +367,14 @@ label#interestAreas, label#interestgenres {
     margin-top: 50px;
 }
 
-#areasDiv, #genresDiv, #interestgenresDiv {
+#areasDiv,
+#genresDiv,
+#interestgenresDiv {
     margin-top: 10px;
 }
 
-
-/* 적용본 */
-
-
-body {
-    background-color: #fff;
-    font-family: 'Noto Sans','Nanum Gothic';
-    color: #222;
-}
-header{
-    background-color: white;
-    border-bottom: 1px solid black;
-}
-.nav-main {
-    padding-top: 20px;
-    text-align: center;
-}
-.nav-main a {
-    padding: 0 25px;
-    font-weight: bold;
-    font-size: 18px;
-}
-.nav-main a:hover {
-    border-bottom: 2px solid #222;
-    padding-bottom: 11px;
-}
-.main-nav{
-    clear:both;
-    height: 60px;
-}
-.logo-img{
-    width:150px;
-    margin-top: 5px;
-    float: left;
-}
-.main-nav {
-    margin: 10px;
-}
-.nav-right{
-    width:200px;
-    padding:20px;
-    float: right;
-    text-align:right;
-}
-.nav-right span{
-    font-size: 15px;
-    color:crimson;
-    font-weight: bold;
-}
-.nav-right a{
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 5px;
-}
-.nav-right a:hover{
-    border-bottom: 2px solid #222;
-    padding-bottom: 11px;
-}
-
-.nav-text{
-    margin: auto;
-    width: 600px;
-    padding-top: 10px;
-}
-.main-nav div img{
-    width: 13%;
-    padding: 0 10px;
-}
-
-.mt20{
-    margin-top : 20px;
-}
-
-@charset "UTF-8";
-
 /* 체크박스 꾸미기 */
 
-input[type=checkbox] {
-    visibility: hidden;
-}
 
 label.checkbox {
     cursor: pointer;
@@ -419,9 +387,9 @@ label.checkbox {
 
 label.checkbox:before {
     background: #1a1c26;
-    content:'';
+    content: '';
     position: absolute;
-    top:2px;
+    top: 2px;
     left: 0;
     width: 20px;
     height: 20px;
@@ -454,7 +422,7 @@ input[type=checkbox]:checked + label:after {
 
 
 
-#mainDiv{
+.mainDiv {
     margin: 20px auto;
     width: 770px;
     height: 930px;
@@ -462,103 +430,68 @@ input[type=checkbox]:checked + label:after {
     -moz-border-radius: 8px/7px;
     border-radius: 8px/7px;
     background-color: #ebebeb;
-    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
-    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
-    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     border: solid 1px #cbc9c9;
 }
 
-.title{
-    width: 500px;
-    margin-top: 30px;
-    margin-left: 300px;
-}
-
-.title span{
-    font-size: 24px;
-    font-weight: bolder;
-}
-
-.profile {
-    margin-top: 40px;
-}
-
-div.photoPositioning {
-    margin-left: 10px;
-}
-
-div.personalPositioning {
-    margin-left: 10px;
-}
-
-div.artistPositioning {
-    margin-left: 10px;
-}
-
-#photoInputDiv {
+.photoInputDiv {
     margin: 10px 10px 5px 20px;
-    float:left;
+    float: left;
     width: 350px;
     height: 400px;
-/*   background-color: green; */
 }
 
-#personalInfoDiv {
+.artistPositioning {
+    margin-left: 10px;
+}
+
+/* 개인 정보 입력 */
+.personalInfoDiv {
     margin: 0px 20px 5px 20px;
-    float:left;
+    float: left;
     width: 350px;
     height: 410px;
-/*   background-color: blue; */
-    position:relative;
+    /*position:relative;*/
 }
-#emailDiv {
+
+/* 이메일 실시간 체크*/
+.emailDiv {
     margin-top: 30px;
 }
 
-#artistInfoDiv {
+/* 아티스트 정보*/
+.artistInfoDiv {
     margin: 50px 10px 20px 20px;
-    float:left;
+    float: left;
     width: 730px;
     height: 250px;
 }
 
-#InterestInfoDiv {
+/* 관심 지역 */
+.InterestInfoDiv {
     margin: 50px 20px 20px 20px;
-    float:left;
+    float: left;
     width: 720px;
     height: 200px;
-    position:relative;
+    position: relative;
 }
 
-div#artistNameDiv {
+.artistNameDiv {
     float: left;
 }
 
-div#artistMemberDiv {
+.artistMemberDiv {
     float: left;
     margin-left: 55px;
 }
 
-div#joinDateDiv {
+.joinDateDiv {
     float: left;
 }
 
-div#profileDiv {
-margin-bottom: 50px;
+.profileDiv {
+    margin-bottom: 50px;
 }
 
-textarea {
-width: 680px;
-height: 100px;
--webkit-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
--moz-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
-border-radius: 5px 5px 5px 5px/5px 5px 5px 5px;
-background-color: #fff;
--webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
--moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-border: solid 1px #cbc9c9;
-margin-left: 15px;
-margin-top: 20px;
-margin-bottom: 0px;
-}

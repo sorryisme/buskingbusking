@@ -9,33 +9,29 @@
 <link rel='stylesheet' href='/css/member/signUp.css'>
 <body>
 <form id='formData'>
-    <div id="mainDiv">
+    <div id="mainDiv" class="mainDiv">
         <div class="title">
-            <span id="registration">Registration</span>
+            <span id="registration" class="registration">Registration</span>
             <input type="radio" value="일반회원" id="type1" name="type" checked="checked"/>
-            <label for="type1" class="radio">일반회원</label>
+            <label for="type1" class="radioLable">일반회원</label>
             <input type="radio" value="아티스트" id="type2" name="type"/>
-            <label for="type2" class="radio">아티스트</label>
+            <label for="type2" class="radioLable">아티스트</label>
         </div>
 
         <div id="formDivOne">
             <div id="divOne">
-                <div id="photoInputDiv">
-                    <div class="photoPositioning">
-                        <div class="accounttype">
-                        </div>
-
-                        <div id="image-cropper">
-                            <h4>프로필 이미지</h4>
-                            <input type="file" class="cropit-image-input">
-                        </div>
+                <div id="photoInputDiv" class="photoInputDiv">
+                    <div id="image-cropper">
+                        <h4>프로필 이미지</h4>
+                        <input type="file" class="cropit-image-input">
                     </div>
+
                 </div>
 
 
-                <div id="personalInfoDiv">
+                <div id="personalInfoDiv" class="personalInfoDiv">
                     <div class="PersonalPositioning">
-                        <div id="emailDiv">
+                        <div id="emailDiv" class="emailDiv">
                             <h4>개인 정보 입력</h4>
                             <label id="icon" for="email"><i class="icon-envelope" style="margin-left:-2px;"></i></label>
                             <input type="email" id='email' name="email" onkeyup="checkEmail()" placeholder="example@email.com" required/>
@@ -69,9 +65,9 @@
 
                         <div id="messageFlagDiv">
                             <input type="radio" id="messageFlag1" name="messageFlag" value="1" checked="checked">
-                            <label for="messageFlag1" class="radio">메시지 수신</label>
+                            <label for="messageFlag1" class="radioLable">메시지 수신</label>
                             <input type="radio" id="messageFlag2" name="messageFlag" value="0">
-                            <label for="messageFlag2" class="radio">메시지 거부</label>
+                            <label for="messageFlag2" class="radioLable">메시지 거부</label>
                         </div>
 
                         <div id='messageIdDiv'>
@@ -87,12 +83,12 @@
             </div>
 
             <div id="divTwo">
-                <div id="artistInfoDiv">
+                <div id="artistInfoDiv" class="artistInfoDiv">
 
                     <div class="artistPositioning">
                         <h3 style="margin-top:10px;">아티스트 정보</h3>
 
-                        <div id="artistNameDiv">
+                        <div id="artistNameDiv" class="artistNameDiv">
                             <label id="icon" for='artistName'><i class="icon-male"></i></label>
                             <input id='artistName' type='text' name='artist.artistName' value="" placeholder="아티스트/팀명">
                             <div class="checkMessages" id="chkArtistName">
@@ -100,7 +96,7 @@
                             </div>
                         </div>
 
-                        <div id="artistMemberDiv">
+                        <div id="artistMemberDiv" class="artistMemberDiv">
                             <label id="icon" for='artistMember'><i class="icon-male"></i></label>
                             <input id='artistMember' type='text' name='artist.artistMember'
                                    value="" placeholder="팀 구성원">
@@ -109,7 +105,7 @@
                             </div>
                         </div>
 
-                        <div id="joinDateDiv">
+                        <div id="joinDateDiv" class="joinDateDiv">
                             <label id="icon" for='joinDate'><i class="icon-male"></i></label>
                             <input id='joinDate' type='date' placeholder="팀 결성 날짜">
                             <div class="checkMessages" id="chkJoinDate">
@@ -117,7 +113,7 @@
                             </div>
                         </div>
 
-                        <div id="profileDiv">
+                        <div id="profileDiv" class="profileDiv">
                             <textarea id='profile' name='artist.profile' placeholder="아티스트 프로필"></textarea>
                             <div class="checkMessages" id="chkProfile">
                                 <p></p>
@@ -127,7 +123,7 @@
                     </div>
                 </div>
 
-                <div id="InterestInfoDiv" style="margin-top: 30px; margin-bottom: 30px;">
+                <div id="InterestInfoDiv" class="InterestInfoDiv" style="margin-top: 30px; margin-bottom: 30px;">
 
                     <div id="interestAreasDiv">
                         <label for='interestAreas' id="interestAreas">관심 지역</label>
