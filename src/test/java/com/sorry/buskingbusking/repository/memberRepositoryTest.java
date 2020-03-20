@@ -12,8 +12,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -85,6 +87,48 @@ public class memberRepositoryTest {
         List<Member> memberList = memberRepository.findAll();
         assertThat(memberList).hasSize(3);
         assertThat(memberList).contains(member1,member2,member3);
+    }
+
+    @Test
+    public void updateMemeberTest(){
+        Member savedMember = Member.builder()
+                .email("wivipp39@naver.com")
+                .password("1234")
+                .nickName("sorryisme")
+                .mobile("010-7146-7182")
+                .msgYn("Y")
+                .msgId("wivipp39")
+                .delYn("N")
+                .regDt(LocalDateTime.now())
+                .updDt(LocalDateTime.now()).build();
+
+        testEntityManager.persist(savedMember);
+        Long savedId = savedMember.getId();
+
+        Optional<Member> optionalMember = memberRepository.findById(savedId);
+
+
+        optionalMember.ifPresent(findMember -> {
+                        Member updateMember = Member.builder()
+                                                    .id(findMember.getId())
+                                                    .email("updated@0naver.com")
+                                                    .password("9999")
+                                                    .nickName("jisungkim")
+                                                    .msgId("N")
+                                                    .msgId(null)
+                                                    .delYn("N")
+                                                    .updDt(LocalDateTime.now())
+                                                    .build();
+                        memberRepository.save(updateMember);
+            });
+
+
+        Optional<Member> optionalMember1 = memberRepository.findById(savedId);
+        Member updatedMember = optionalMember1.orElse(null);
+
+        assertThat(updatedMember).isNotNull();
+        assertThat(updatedMember).isNotEqualTo(savedMember);
+
     }
 
 

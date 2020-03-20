@@ -37,7 +37,8 @@ public class Member {
     private LocalDateTime updDt;
 
     @Builder
-    public Member(String email, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
+    public Member(Long id, String email, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nickName = nickName;

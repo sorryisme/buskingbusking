@@ -29,11 +29,12 @@ public class MemberControllerTest {
     private MemberService memberService;
 
     @Test
-    public void member_sign_Up() throws Exception{
+    public void move_member_sign_Up() throws Exception{
         mvc.perform(get("/member/signUp"))
                                             .andExpect(status().isOk())
                                             .andExpect(view().name("/member/signUp"));
     }
+
 
     @Test
     public void member_get_List() throws Exception {
