@@ -2,11 +2,14 @@ package com.sorry.buskingbusking.repository;
 
 import com.sorry.buskingbusking.Repository.MemberRepository;
 import com.sorry.buskingbusking.domain.Member;
+import jdk.internal.jline.internal.Log;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -24,6 +27,8 @@ import static org.hamcrest.Matchers.hasSize;
 @DataJpaTest
 public class memberRepositoryTest {
 
+    Logger LOG = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private TestEntityManager testEntityManager;
 
@@ -31,7 +36,7 @@ public class memberRepositoryTest {
     private MemberRepository memberRepository;
 
     @Test
-    public void memberSaveTest(){
+    public void 회원가입_저장(){
 
         Member member = Member.builder()
                 .email("wivipp39@naver.com")
@@ -49,7 +54,7 @@ public class memberRepositoryTest {
     }
 
     @Test
-    public void memberListTest(){
+    public void 회원저장_조회(){
         Member member1 =  Member.builder()
                 .email("test@naver.com")
                 .password("1234")
@@ -90,7 +95,9 @@ public class memberRepositoryTest {
     }
 
     @Test
-    public void updateMemeberTest(){
+    public void 회원_업데이트(){
+
+        //given
         Member savedMember = Member.builder()
                 .email("wivipp39@naver.com")
                 .password("1234")
@@ -104,30 +111,22 @@ public class memberRepositoryTest {
 
         testEntityManager.persist(savedMember);
         Long savedId = savedMember.getId();
-
+        Member updateMember = Member.builder()
+                .id(savedId)
+                .email("updated@0naver.com")
+                .password("9999")
+                .nickName("jisungkim")
+                .msgId("N")
+                .msgId(null)
+                .delYn("N")
+                .updDt(LocalDateTime.now())
+                .build();
+        memberRepository.save(updateMember);
         Optional<Member> optionalMember = memberRepository.findById(savedId);
-
-
-        optionalMember.ifPresent(findMember -> {
-                        Member updateMember = Member.builder()
-                                                    .id(findMember.getId())
-                                                    .email("updated@0naver.com")
-                                                    .password("9999")
-                                                    .nickName("jisungkim")
-                                                    .msgId("N")
-                                                    .msgId(null)
-                                                    .delYn("N")
-                                                    .updDt(LocalDateTime.now())
-                                                    .build();
-                        memberRepository.save(updateMember);
-            });
-
-
-        Optional<Member> optionalMember1 = memberRepository.findById(savedId);
-        Member updatedMember = optionalMember1.orElse(null);
+        Member updatedMember = optionalMember.get();
 
         assertThat(updatedMember).isNotNull();
-        assertThat(updatedMember).isNotEqualTo(savedMember);
+        assertThat(updatedMember.getEmail()).isEqualTo("updated@naver.com");
 
     }
 

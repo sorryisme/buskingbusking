@@ -29,7 +29,7 @@ public class MemberControllerTest {
     private MemberService memberService;
 
     @Test
-    public void move_member_sign_Up() throws Exception{
+    public void 회원가입_페이지_이동() throws Exception{
         mvc.perform(get("/member/signUp"))
                                             .andExpect(status().isOk())
                                             .andExpect(view().name("/member/signUp"));
@@ -37,7 +37,7 @@ public class MemberControllerTest {
 
 
     @Test
-    public void member_get_List() throws Exception {
+    public void 회원정보_리스트() throws Exception {
         Member member = new Member();
         given(memberService.getMemberList()).willReturn(Collections.singletonList(member));
 
