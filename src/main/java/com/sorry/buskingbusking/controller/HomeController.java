@@ -10,4 +10,9 @@ public class HomeController {
     public String movePageSignUp(){
         return "index";
     }
+
+    @GetMapping("/admin")
+    public String movePageAdmin(){
+        return "admin/adminIndex";
+    }
 }
