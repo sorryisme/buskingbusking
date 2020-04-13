@@ -28,6 +28,7 @@ public class BuskingbuskingApplication {
 							memberRepository.save(
 								Member.builder()
 										.email("wivipp"+index+"@naver.com")
+										.nickName("nick_"+index)
 										.mobile("010714671"+index)
 										.delYn("N")
 										.regDt(LocalDateTime.now())
