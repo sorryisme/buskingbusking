@@ -21,7 +21,7 @@ public class BuskingbuskingApplication {
 	}
 
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner(MemberRepository memberRepository) throws Exception{
 		return (args)->{
 					IntStream.rangeClosed(1, 50).forEach(index ->

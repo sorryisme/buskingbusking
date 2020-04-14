@@ -1,5 +1,6 @@
 package com.sorry.buskingbusking.domain;
 
+import com.sorry.buskingbusking.domain.dto.MemberDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -49,4 +50,6 @@ public class Member {
         this.regDt = regDt;
         this.updDt = updDt;
     }
+
+
 }

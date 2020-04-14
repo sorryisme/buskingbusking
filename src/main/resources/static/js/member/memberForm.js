@@ -4,11 +4,15 @@ const MemberForm = function(){
 
     return {
         init : function(){
-
+            MemberFormEvent();
         }
     };
-
     //함수 선언부
+    function MemberFormEvent(){
+        $("#addBtn").click(function(){
+            $("#formData").submit();
+        });
+    }
 
 
 
