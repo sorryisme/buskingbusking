@@ -60,7 +60,7 @@ public class MemberControllerTest {
 
         mvc.perform(get("/admin/member/getList"))
                                             .andExpect(status().isOk())
-                                            .andExpect(view().name("admin/member/memberList"))
+                                            .andExpect(view().name("/admin/member/memberList"))
                                             .andExpect(model().attributeExists("memberList"))
                                             .andExpect(model().attribute("memberList",Collections.singletonList(member)));
 
