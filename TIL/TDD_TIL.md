@@ -85,3 +85,35 @@
   - AutoConfigureTestDatabase 기본 값이 Replace.Any인 경우 내장된 데이터소스를 사용
   - Replace.NONE의 경우 ActivateProfiles에 설정한 데이터소스가 적용
 
+
+
+### @[RunWith(SpringRunner.class)](https://eminentstar.github.io/2017/07/23/about-junit-and-test.html)
+
+- Junit 프레임워크에서 테스트 메소드의 실행을 담당하고 있는 클래스를 Test runner라고 호칭
+- @Runwith 애노테이션은 BlockJUnit4ClassRunner 대신 지정된 클래스를 이용해 테스트 메소드를 수행
+  - 일종의 Junit프레임워크 확장
+
+
+
+### TestEntityManager
+
+- EntityManagerFactory를 파라미터로 받아 객체를 생성한다.
+
+- @Autowired 하면 자동으로 Bean에서 생성받아서 생성될 것이다.
+
+  ```java
+  private final EntityManagerFactory entityManagerFactory;
+  
+  	public TestEntityManager(EntityManagerFactory entityManagerFactory) {
+  		Assert.notNull(entityManagerFactory, "EntityManagerFactory must not be null");
+  		this.entityManagerFactory = entityManagerFactory;
+  	}
+  
+  ```
+
+- TestEntityFactory는 @DataJpaTest 애노테이션을 있어야 주입된다.
+
+
+
+
+

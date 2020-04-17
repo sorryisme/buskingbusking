@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class memberRepositoryTest {
+public class MemberRepositoryTest {
 
     Logger LOG = LoggerFactory.getLogger(getClass());
 

@@ -1,6 +1,7 @@
 package com.sorry.buskingbusking.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,10 +18,6 @@ public class Notice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_id")
-    private Member member;
-
     private String noticeTitle;
 
     private String noticeContents;
@@ -30,6 +27,21 @@ public class Notice {
     private LocalDateTime regDt;
 
     private LocalDateTime updDt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="member_id")
+    private Member member;
+
+    @Builder
+    public Notice(Long id,String noticeTitle,String noticeContents, Integer viewCnt, LocalDateTime regDt, LocalDateTime updDt, Member member) {
+       this.id = id;
+       this.noticeTitle = noticeTitle;
+       this.viewCnt = viewCnt;
+       this.noticeContents = noticeContents;
+       this.regDt = regDt;
+       this.updDt = updDt;
+       this.member = member;
+    }
 
 
 }
