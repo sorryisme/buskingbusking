@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,7 +18,6 @@ public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeRepository noticeRepository;
 
-
     @Override
     @Transactional(readOnly = true)
     public List<Notice> getNoticeListAll() {
@@ -25,9 +25,12 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Notice findNoticeById(Long noticeId) {
-        return null;
+        Optional<Notice> optionalNotice = noticeRepository.findById(noticeId);
+        Notice findNotice = optionalNotice.get();
+        findNotice.addViewCnt();
+
+        return findNotice;
     }
 
     @Override

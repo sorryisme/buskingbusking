@@ -27,7 +27,11 @@ public class NoticeController {
     }
 
     @GetMapping("/notice/view/{id}")
-    public String movePageNotice(@PathVariable String id){
+    public String movePageNotice(@PathVariable Long id, Model model){
+        log.info("** id = {}", id);
+        Notice notice = noticeService.findNoticeById(id);
+        model.addAttribute("notice", notice);
+
         return "/notice/noticeView";
     }
 

@@ -29,7 +29,7 @@
         <tbody>
             <tr th:each="notice : ${noticeList}">
                 <td th:text="${notice.noticeTitle}"></td>
-                <td th:text="${notice.noticeContents}"></td>
+                <td><a th:href="@{/notice/view/{noticeId}(noticeId=${notice.id})}" th:text="${notice.noticeContents}"></a></td>
                 <td th:text="${notice.member.nickName}"></td>
                 <td th:text="${notice.viewCnt}"></td>
                 <td th:text="${#temporals.format(notice.regDt,'yyyy-MM-dd')}"></td>

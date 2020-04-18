@@ -43,5 +43,9 @@ public class Notice {
        this.member = member;
     }
 
+    public void addViewCnt(){
+        this.viewCnt++;
+    }
+
 
 }

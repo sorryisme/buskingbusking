@@ -158,9 +158,7 @@
 
 
 
-### [
-
-### (Thymeleaf LocalDateTime)[https://gist.github.com/romach/337a788b5303454e08811b80767f55f1]
+### [Thymeleaf LocalDateTime](https://gist.github.com/romach/337a788b5303454e08811b80767f55f1)
 
 - Thymeleaf에서 LocalDateTime Format을 사용하기 위해서 라이브러리 추가
 

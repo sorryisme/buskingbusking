@@ -13,9 +13,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -122,6 +124,29 @@ public class NoticeRepositoryTest {
         assertThat(list.get(0).getNoticeTitle()).isEqualTo("공지사항1");
         assertThat(list.get(0).getMember()).isEqualTo(writer);
         assertThat(list).hasSize(10);
+
+    }
+
+    @Test
+    public void 공지사항_상세보기(){
+        testEntityManager.persist(writer);
+
+        Notice saveNotice = Notice.builder()
+                .noticeTitle("공지사항")
+                .noticeContents("공지사항 테스트")
+                .viewCnt(0)
+                .member(writer)
+                .regDt(LocalDateTime.now())
+                .build();
+
+        testEntityManager.persist(saveNotice);
+        Optional<Notice> optionalNotice = noticeRepository.findById(saveNotice.getId());
+        Notice findNotice = optionalNotice.get();
+        findNotice.addViewCnt();
+        assertThat(saveNotice).isEqualTo(findNotice);
+        assertThat(saveNotice.getId()).isEqualTo(findNotice.getId());
+        assertThat(saveNotice.getMember()).isEqualTo(writer);
+        assertThat(findNotice.getViewCnt()).isEqualTo(1);
 
     }
 
