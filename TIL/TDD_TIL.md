@@ -115,5 +115,75 @@
 
 
 
+### Thymeleaf
+
+```java
+<tr th:each= "member : ${memberList}">
+	<td th:text="${member.id}"></td>
+</tr>
+```
+
+
+
+
+### [CommandLineRunner](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html)
+
+- 어플리케이션과 동시에 객체를 생성할 때 사용
+- @Order 어노테이션으로 순서를 정할 수 있으며 ApplicationRunner도 비슷하게 동작한다
+  - ApplicationRunner는 람다에서 ApplicationArguments를 받는다.
+  - CommandLineRunner는 람다에서 String 인자를 받는다.
+- 두 인터페이스 모두 Funcitonal Interface이다.
+
+````java
+@Bean
+	public CommandLineRunner runner(JpaRepository memberRepository) throws Exception{
+		return (args)->{
+					IntStream.rangeClosed(1, 50).forEach(index ->
+							memberRepository.save(
+								Member.builder()
+										.email("wivipp"+index+"@naver.com")
+										.nickName("nick_"+index)
+										.mobile("010714671"+index)
+										.delYn("N")
+										.regDt(LocalDateTime.now())
+										.password(index + "")
+										.build()
+							)
+					); //for each 종료
+		};
+	}
+````
+
+- memberRepository < - > JpaRepository 객체를 사용해도 DI가 가능한 이유는?
+
+
+
+### [
+
+### (Thymeleaf LocalDateTime)[https://gist.github.com/romach/337a788b5303454e08811b80767f55f1]
+
+- Thymeleaf에서 LocalDateTime Format을 사용하기 위해서 라이브러리 추가
+
+```java
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.thymeleaf.extras:thymeleaf-extras-java8time')
+}
+```
+
+```java
+# template.html
+<tbody>
+    <th:block th:each="campaign : ${campaigns}">
+        <tr>
+            <td th:text="${#temporals.format(campaign.startTime(), 'yyyy-MM-dd HH:mm:ss')}">startTime</td>
+        </tr>
+    </th:block>
+</tbody>
+ble>
+```
+
+
+
 
 

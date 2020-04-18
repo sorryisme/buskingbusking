@@ -35,8 +35,6 @@ public class NoticeRepositoryTest {
 
     Member writer;
 
-    List<Notice> noticeList = new ArrayList<>();
-
     @Before
     public void 작성자_생성(){
         writer = Member.builder()
@@ -53,17 +51,7 @@ public class NoticeRepositoryTest {
 
     @Before
     public void 공지사항_리스트_준비(){
-        IntStream.rangeClosed(1,10).forEach(args->{
-            noticeList.add(
-                    Notice.builder()
-                            .noticeTitle("공지사항" + args )
-                            .noticeContents("공지사항 테스트" + args)
-                            .viewCnt(0)
-                            .member(writer)
-                            .regDt(LocalDateTime.now())
-                            .build()
-            );
-        });
+
     }
 
 
@@ -88,16 +76,52 @@ public class NoticeRepositoryTest {
 
     @Test
     public void 공지사항_리스트(){
-        noticeList.forEach(notice -> {
-            testEntityManager.persist(notice);
+        //작성자 등록
+        testEntityManager.persist(writer);
+        //공지사항 10개 등록
+        IntStream.rangeClosed(1,10).forEach(args->{
+            testEntityManager.persist(
+                    Notice.builder()
+                            .noticeTitle("공지사항" + args )
+                            .noticeContents("공지사항 테스트" + args)
+                            .viewCnt(0)
+                            .member(writer)
+                            .regDt(LocalDateTime.now())
+                            .build()
+            );
         });
 
         List<Notice> findNoticeList = noticeRepository.findAll();
 
-        assertThat(findNoticeList).isEqualTo(noticeList);
-        assertThat(findNoticeList.size()).isEqualTo(noticeList.size());
+
         assertThat(findNoticeList).hasSize(10);
         assertThat(findNoticeList.get(0).getNoticeTitle()).isEqualTo("공지사항1");
+        assertThat(findNoticeList.get(0).getMember()).isEqualTo(writer);
+    }
+
+    @Test
+    public void 공지사항_작성자_조회(){
+
+        //작성자 등록
+        testEntityManager.persist(writer);
+        //공지사항 10개 등록
+        IntStream.rangeClosed(1,10).forEach(args->{
+            testEntityManager.persist(
+                    Notice.builder()
+                            .noticeTitle("공지사항" + args )
+                            .noticeContents("공지사항 테스트" + args)
+                            .viewCnt(0)
+                            .member(writer)
+                            .regDt(LocalDateTime.now())
+                            .build()
+            );
+        });
+
+        List<Notice> list = noticeRepository.findByMember(writer);
+
+        assertThat(list.get(0).getNoticeTitle()).isEqualTo("공지사항1");
+        assertThat(list.get(0).getMember()).isEqualTo(writer);
+        assertThat(list).hasSize(10);
 
     }
 

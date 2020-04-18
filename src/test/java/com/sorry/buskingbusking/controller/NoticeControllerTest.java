@@ -5,6 +5,7 @@ import com.sorry.buskingbusking.service.NoticeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.stubbing.answers.ThrowsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -41,12 +42,24 @@ public class NoticeControllerTest {
     }
 
     @Test
-    public void 페이지_이동 () throws Exception{
+    public void 공지사항_리스트_이동 () throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/notice/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/notice/noticeList"));
+    }
+
+    @Test
+    public void 공지사항_상세보기_이동 () throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/notice/view/{id}","1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/notice/noticeView"));
 
     }
+
+
+
+
 
 
 
