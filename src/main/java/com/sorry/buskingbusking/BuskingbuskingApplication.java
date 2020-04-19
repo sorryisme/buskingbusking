@@ -56,7 +56,7 @@ public class BuskingbuskingApplication {
 					.build();
 			memberRepository.save(writer);
 
-			IntStream.rangeClosed(1, 50).forEach(index ->{
+			IntStream.rangeClosed(1, 10).forEach(index ->{
 				noticeRepository.save(
 						Notice.builder()
 							.member(writer)
