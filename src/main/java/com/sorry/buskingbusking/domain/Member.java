@@ -1,6 +1,7 @@
 package com.sorry.buskingbusking.domain;
 
 import com.sorry.buskingbusking.domain.dto.MemberDTO;
+import jdk.internal.perf.Perf;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,6 +40,9 @@ public class Member {
 
     private LocalDateTime updDt;
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Performance> performanceList = new ArrayList<>();
+
     @Builder
     public Member(Long id, String email, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
         this.id = id;
@@ -50,6 +56,10 @@ public class Member {
         this.regDt = regDt;
         this.updDt = updDt;
     }
+
+
+
+
 
 
 }
