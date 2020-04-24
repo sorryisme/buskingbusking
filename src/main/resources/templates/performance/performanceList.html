@@ -1,10 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <meta charset="UTF-8">
-    <title>공연 정보</title>
-
-    <link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='../css/style1.css'>
+    <title>공연정보</title>
+    <link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/common/common.css'>
 
     <style type="text/css">
         h2 {
@@ -296,15 +296,11 @@
             }
         }
     </style>
-
 </head>
-
 <body>
-
-<header></header>
+<header th:replace="/fragments/header"></header>
 <div class='container' >
 
-    <br><br>
     <div id='info-list' class='form-group' style="position: relative;">
         <h3>추천 공연</h3>
         <div class="hover01 column"></div>
