@@ -40,9 +40,10 @@ public class Performance {
     private LocalDateTime updDt;
 
     @Builder
-    public Performance(Long id, String performanceName, String performanceGenre, String performanceDate, String performanceLocation,
+    public Performance(Long id, Member member ,String performanceName, String performanceGenre, String performanceDate, String performanceLocation,
                        String performanceDesc, String performanceRemark, Integer viewCnt,LocalDateTime regDt, LocalDateTime updDt){
         this.id = id;
+        this.member = member;
         this.performanceName = performanceName;
         this.performanceGenre = performanceGenre;
         this.performanceDate = performanceDate;

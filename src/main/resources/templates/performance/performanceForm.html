@@ -12,18 +12,10 @@
 
 </head>
 <body>
-<header></header>
+<header th:replace="/fragments/header"></header>
 <div class='container'>
-
-    <h3 id='htitle'></h3>
-
-
-
-
+    <h3>공연 등록</h3>
     <form id='formData' enctype="multipart/form-data">
-
-        <div style='margin-top:30px'></div>
-
         <div class='form-group row my-view' style='background-color:white;'>
             <label for='no' class='col-sm-2 col-form-label'>공연번호</label>
             <div class='col-sm-10'>
@@ -70,7 +62,7 @@
         </div>
 
         <div class='form-group row'>
-            <label for='joinDate' class='col-sm-2 col-form-label'>공연날짜</label>
+            <label for='entryDate' class='col-sm-2 col-form-label'>공연날짜</label>
             <div class='col-sm-10'>
                 <input class='form-control' id='entryDate' type='text' name='entryDate' value=''>
             </div>
@@ -209,7 +201,6 @@
 
 
 
-
     <div class='form-group row'>
         <div class='col-sm-10'>
             <button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>공연 등록</button>
@@ -217,410 +208,406 @@
             <button id="cancelBtn" type="button" class='btn btn-primary btn-sm'>취소</button>
         </div>
     </div>
-
-
-
-    <footer></footer>
 </div>
 
 
-<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-<script src="../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"><charset="UTF-8"></script>
-<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<!--<script src='../node_modules/jquery/dist/jquery.min.js'></script>-->
+<!--<script src="../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"><charset="UTF-8"></script>-->
+<!--<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>-->
+<!--<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>-->
 
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl2qPIVMyVVmfA4F43i0cCk3g6vf2RRZI&libraries=places&callback=initAutocomplete"
-        async defer></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl2qPIVMyVVmfA4F43i0cCk3g6vf2RRZI&libraries=places&callback=initAutocomplete"-->
+<!--        async defer></script>-->
 
 
-<script>
-    var map;
-    var marker;
-    var maplat, maplng;
+<!--<script>-->
+<!--    var map;-->
+<!--    var marker;-->
+<!--    var maplat, maplng;-->
 
 
-    $('#modalBtn').click(() => {
-        if ((mapLatitudeItem.val() == '') && (mapLongitudeItem.val() == '')) {
-            maplat = 37.497912049682526;
-            maplng = 127.0276288757841;
-        } else {
-            maplat = mapLatitudeItem.val();
-            maplng = mapLongitudeItem.val();
-        }
-
-        maplatlng = new google.maps.LatLng(maplat, maplng);
-        map.setCenter(maplatlng);
-        marker.setPosition(maplatlng);
-    });
-
-    $('#mapsaveBtn').click(() => {
-        mapLatitudeItem.val(maplat);
-        mapLongitudeItem.val(maplng);
-        /* $('#mapLatitude').attr('value', maplat);
-        $('#mapLongitude').attr('value', maplng); */
-    });
-
-    function initAutocomplete() {
-
-        var maplatlng
-
-        if ((mapLatitudeItem.val() == '') && (mapLongitudeItem.val() == '')) {
-            /* maplat = 37.497912049682526;
-            maplng = 127.0276288757841; */
-            maplatlng = new google.maps.LatLng(37.497912049682526, 127.0276288757841);  // 초기 위치 강남역
-        } else {
-            maplat = mapLatitudeItem.val();
-            maplng = mapLongitudeItem.val();
-            maplatlng = new google.maps.LatLng(maplat, maplng);
-        }
+<!--    $('#modalBtn').click(() => {-->
+<!--        if ((mapLatitudeItem.val() == '') && (mapLongitudeItem.val() == '')) {-->
+<!--            maplat = 37.497912049682526;-->
+<!--            maplng = 127.0276288757841;-->
+<!--        } else {-->
+<!--            maplat = mapLatitudeItem.val();-->
+<!--            maplng = mapLongitudeItem.val();-->
+<!--        }-->
+
+<!--        maplatlng = new google.maps.LatLng(maplat, maplng);-->
+<!--        map.setCenter(maplatlng);-->
+<!--        marker.setPosition(maplatlng);-->
+<!--    });-->
+
+<!--    $('#mapsaveBtn').click(() => {-->
+<!--        mapLatitudeItem.val(maplat);-->
+<!--        mapLongitudeItem.val(maplng);-->
+<!--        /* $('#mapLatitude').attr('value', maplat);-->
+<!--        $('#mapLongitude').attr('value', maplng); */-->
+<!--    });-->
+
+<!--    function initAutocomplete() {-->
+
+<!--        var maplatlng-->
+
+<!--        if ((mapLatitudeItem.val() == '') && (mapLongitudeItem.val() == '')) {-->
+<!--            /* maplat = 37.497912049682526;-->
+<!--            maplng = 127.0276288757841; */-->
+<!--            maplatlng = new google.maps.LatLng(37.497912049682526, 127.0276288757841);  // 초기 위치 강남역-->
+<!--        } else {-->
+<!--            maplat = mapLatitudeItem.val();-->
+<!--            maplng = mapLongitudeItem.val();-->
+<!--            maplatlng = new google.maps.LatLng(maplat, maplng);-->
+<!--        }-->
 
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: maplatlng,
-            //center: {lat: 37.497912049682526, lng: 127.0276288757841},
-            zoom: 15,
-            scrollwheel: true,
-            mapTypeId: 'roadmap'
-        });
+<!--        map = new google.maps.Map(document.getElementById('map'), {-->
+<!--            center: maplatlng,-->
+<!--            //center: {lat: 37.497912049682526, lng: 127.0276288757841},-->
+<!--            zoom: 15,-->
+<!--            scrollwheel: true,-->
+<!--            mapTypeId: 'roadmap'-->
+<!--        });-->
 
-        marker = new google.maps.Marker({
-            position: map.center,
-            map: map,
-            draggable: true,
-            //animation: google.maps.Animation.DROP
-        });
-
+<!--        marker = new google.maps.Marker({-->
+<!--            position: map.center,-->
+<!--            map: map,-->
+<!--            draggable: true,-->
+<!--            //animation: google.maps.Animation.DROP-->
+<!--        });-->
+
 
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-
-        // mouse click
-        //google.maps.event.addListener(map, 'click', function (event) {
-        /* map.addListener('click', onMapClick); */
+
+<!--        // Create the search box and link it to the UI element.-->
+<!--        var input = document.getElementById('pac-input');-->
+<!--        var searchBox = new google.maps.places.SearchBox(input);-->
+<!--        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);-->
+
+
+<!--        // mouse click-->
+<!--        //google.maps.event.addListener(map, 'click', function (event) {-->
+<!--        /* map.addListener('click', onMapClick); */-->
 
 
-        // marker mouse drag
-        /* marker.addListener('dragend', onMarkerDragend); */
+<!--        // marker mouse drag-->
+<!--        /* marker.addListener('dragend', onMarkerDragend); */-->
 
-        google.maps.event.addListener(map, 'click', function (event) {
-            map.setCenter(event.latLng);
-            marker.setPosition(event.latLng);
+<!--        google.maps.event.addListener(map, 'click', function (event) {-->
+<!--            map.setCenter(event.latLng);-->
+<!--            marker.setPosition(event.latLng);-->
 
-            console.log("Click = >  mapLatitude : " + event.latLng.lat() + "   mapLongitude : " + event.latLng.lng());
+<!--            console.log("Click = >  mapLatitude : " + event.latLng.lat() + "   mapLongitude : " + event.latLng.lng());-->
 
-            var geocoder = new google.maps.Geocoder();
+<!--            var geocoder = new google.maps.Geocoder();-->
 
-            geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        console.log(results);
-                        console.log(results[0].formatted_address);
-                        /* $('#mapLatitude').attr('value', event.latLng.lat());
-                        $('#mapLongitude').attr('value', event.latLng.lng()); */
+<!--            geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {-->
+<!--                if (status == google.maps.GeocoderStatus.OK) {-->
+<!--                    if (results[0]) {-->
+<!--                        console.log(results);-->
+<!--                        console.log(results[0].formatted_address);-->
+<!--                        /* $('#mapLatitude').attr('value', event.latLng.lat());-->
+<!--                        $('#mapLongitude').attr('value', event.latLng.lng()); */-->
 
-                        maplat = event.latLng.lat();
-                        maplng = event.latLng.lng();
-                    }
-                } else {
-                    alert("Geocoder failed due to: " + status);
-                }
-            });
-        });
+<!--                        maplat = event.latLng.lat();-->
+<!--                        maplng = event.latLng.lng();-->
+<!--                    }-->
+<!--                } else {-->
+<!--                    alert("Geocoder failed due to: " + status);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
 
-        /* google.maps.event.addListener(marker, 'dragend', function (event) { */
-        marker.addListener('dragend', onMarkerDragend);
-    }
+<!--        /* google.maps.event.addListener(marker, 'dragend', function (event) { */-->
+<!--        marker.addListener('dragend', onMarkerDragend);-->
+<!--    }-->
 
-    function onMarkerDragend(event) {
-        map.setCenter(event.latLng);
-        console.log("Drag = >  mapLatitude : " + event.latLng.lat() + "   mapLongitude : " + event.latLng.lng());
-
-        var geocoder = new google.maps.Geocoder();
-
-        geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]) {
-                    console.log(results);
-                    console.log(results[0].formatted_address);
-                    /* $('#mapLatitude').attr('value', event.latLng.lat());
-                    $('#mapLongitude').attr('value', event.latLng.lng()); */
-
-                    maplat = event.latLng.lat();
-                    maplng = event.latLng.lng();
-                }
-            } else {
-                alert("Geocoder failed due to: " + status);
-            }
-        });
-    }
-</script>
-
-<script type="text/javascript">
-
-    // 이미지 정보들을 담을 배열
-    var sel_files = [];
-
-
-    $(document).ready(function() {
-        $("#input_imgs").on("change", handleImgFileSelect);
-    });
+<!--    function onMarkerDragend(event) {-->
+<!--        map.setCenter(event.latLng);-->
+<!--        console.log("Drag = >  mapLatitude : " + event.latLng.lat() + "   mapLongitude : " + event.latLng.lng());-->
+
+<!--        var geocoder = new google.maps.Geocoder();-->
+
+<!--        geocoder.geocode({ 'latLng': event.latLng }, function (results, status) {-->
+<!--            if (status == google.maps.GeocoderStatus.OK) {-->
+<!--                if (results[0]) {-->
+<!--                    console.log(results);-->
+<!--                    console.log(results[0].formatted_address);-->
+<!--                    /* $('#mapLatitude').attr('value', event.latLng.lat());-->
+<!--                    $('#mapLongitude').attr('value', event.latLng.lng()); */-->
+
+<!--                    maplat = event.latLng.lat();-->
+<!--                    maplng = event.latLng.lng();-->
+<!--                }-->
+<!--            } else {-->
+<!--                alert("Geocoder failed due to: " + status);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
+<!--<script type="text/javascript">-->
+
+<!--    // 이미지 정보들을 담을 배열-->
+<!--    var sel_files = [];-->
+
+
+<!--    $(document).ready(function() {-->
+<!--        $("#input_imgs").on("change", handleImgFileSelect);-->
+<!--    });-->
 
-    function fileUploadAction() {
-        console.log("fileUploadAction");
-        $("#input_imgs").trigger('click');
-    }
-
-    function handleImgFileSelect(e) {
-
-        // 이미지 정보들을 초기화
-        sel_files = [];
-        $(".imgs_wrap").empty();
-
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
-
-        var index = 0;
-        filesArr.forEach(function(f) {
-            if(!f.type.match("image.*")) {
-                alert("확장자는 이미지 확장자만 가능합니다.");
-                return;
-            }
-
-            sel_files.push(f);
-
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
-                $(".imgs_wrap").append(html);
-                index++;
-
-            }
-            reader.readAsDataURL(f);
-
-        });
-    }
-
-
-    function deleteImageAction(index) {
-        console.log("index : "+index);
-        console.log("sel length : "+sel_files.length);
-
-        sel_files.splice(index, 1);
-
-        var img_id = "#img_id_"+index;
-        $(img_id).remove();
-    }
-
-    function fileUploadAction() {
-        console.log("fileUploadAction");
-        $("#input_imgs").trigger('click');
-    }
-
-</script>
-
-
-<script type="text/javascript">
-
-
-    var performInfo = {},
-        pagearr,
-        addBtn = $('#addBtn'),
-        updateBtn = $('#updateBtn'),
-        cancelBtn = $('#cancelBtn'),
-        noItem = $('#no'),
-        deleteTagItem = $('#deleteTag'),
-        nameItem = $('#name'),
-        genreItem = $('#genre'),
-        entryDateItem = $('#entryDate'),
-        locationItem = $('#location'),
-        mapLatitudeItem  = $('#mapLatitude'),
-        mapLongitudeItem  = $('#mapLongitude'),
-        detailDescItem = $('#detailDesc'),
-        specialDescItem = $('#specialDesc'),
-        mediasItem = $('#medias'),
-        file1Item = $('#file1'),
-        infolist = $('#infolist > tbody');
-
-
-    //$('#entryDate').datetimepicker();
-    $('#entryDate').datetimepicker({
-        step:10,  //분단위 설정
-        format: 'Y-m-d H:i'
-    });
-    jQuery.datetimepicker.setLocale('ko');
-
-    $(document.body).on('login', (event, obj) => {
-        console.log('로그인 정보 가져오기:', loginUser.type);
-        load();
-    });
-
-    $('header').load('../header.html');
-
-    //$('footer').load('../footer.html');
-
-
-    var index = location.href.indexOf('?');
-
-    //$(document.body).on('login', (event, obj) => {
-
-    function load() {
-        if (index != -1) {
-            var qs = location.href.substr(index + 1);
-            pagearr = qs.split('=');
-            $('#htitle').html("공연 정보");
-            $('.my-new').css('display', 'none');
-            $(() => {
-
-                // 공연정보
-                $.ajax('../json/performance/' + pagearr[1], {
-                    dataType: 'json',
-                    async : false,
-                    success: (result) => {
-                        // 다른 함수에서 사용
-                        performInfo = result.data;
-
-                        //for (var i = 0; i < result.data.medias.length; i++) {
-                        for (var data of performInfo.medias) {
-                            if (data.filename != null) {
-                                mediasItem.append("<img src='../download/" + data.filename + "' height=100>");
-                                //mediasItem.append("<a href='/download/" + data.filename + "'>" + data.filename + "</a><br>");
-                            }
-                        };
-
-                        // formData
-                        noItem.val(performInfo.no);
-                        deleteTagItem.val(performInfo.deleteTag);
-                        nameItem.val(performInfo.name);
-                        genreItem.append('<option selected>' + performInfo.genre + '</option>')
-                        entryDateItem.val(formatDateTime(performInfo.entryDate));
-                        locationItem.val(performInfo.location);
-                        mapLatitudeItem.val(performInfo.mapLatitude);
-                        mapLongitudeItem.val(performInfo.mapLongitude);
-                        detailDescItem.val(performInfo.detailDesc);
-                        specialDescItem.val(performInfo.specialDesc);
-
-                    },
-                    error: () => {
-                        window.alert('view 서버 실행 오류!');
-                    }
-                });
-            });
-            $('#htitle').html("공연 수정");
-            cancelBtn.text("취소");
-            $('.my-new').css('display', 'none');
-
-        } else {
-            $('#htitle').html("공연 등록");
-            cancelBtn.text("취소");
-            $('.my-view').css('display', 'none');
-        }
-    }
-
-    addBtn.click(() => {
-
-        console.log("");
-        var formData = new FormData($("#formData")[0]);
-
-        for(var i=0, len=sel_files.length; i<len; i++) {
-            formData.append('files', sel_files[i]);
-        }
-
-        if(sel_files.length < 1) {
-            alert("한개이상의 파일을 선택해주세요.");
-            return;
-        }
-
-        // 공연정보 전송
-        $.ajax({
-            url: '../json/performance2/add',
-            data: formData,
-            dataType: 'json',
-            processData: false,
-            contentType: false,
-            //cache: false,
-            method: 'POST',
-            success: function(result) {
-                location.href = "list.html";
-            },
-            error: () => {
-                window.alert('서버 실행 오류!');
-            }
-        });
-    });
-
-    updateBtn.click(() => {
-
-        if (updateBtn.text() == "수정 저장") {
-            var formData = new FormData($("#formData")[0]);
-
-            for(var i=0, len=sel_files.length; i<len; i++) {
-                formData.append('files', sel_files[i]);
-            }
-
-            if(sel_files.length < 1) {
-                alert("한개이상의 파일을 선택해주세요.");
-                return;
-            }
-
-            $.ajax({
-                url: '../json/performance/update',
-                data: formData,
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                //cache: false,
-                method: 'POST',
-                success: function(result) {
-                    location.href = "detail.html?no="+ performInfo.no;
-                },
-                error: () => {
-                    window.alert('서버 실행 오류!');
-                }
-            });
-        } else {
-            location.href = "detail.html?no="+ performInfo.no;
-        }
-    });
-
-    cancelBtn.click(() => {
-        if (index == -1) {
-            location.href = "list.html";
-        } else {
-            location.href = "detail.html?no="+ performInfo.no;
-        }
-    });
-
-    function formatDate(jason) {
-        var jasondate = new Date(jason);
-
-        return jasondate.getFullYear() + '-' +
-            pad((jasondate.getMonth() + 1), 2) + '-' +
-            pad(jasondate.getDate(), 2);
-    }
-
-    function formatDateTime(jason) {
-        var jasondate = new Date(jason);
-
-        return jasondate.getFullYear() + '-' +
-            pad((jasondate.getMonth() + 1), 2) + '-' +
-            pad(jasondate.getDate(), 2) + ' ' +
-            pad(jasondate.getHours(), 2) + ':' +
-            pad(jasondate.getMinutes(), 2);
-        //pad(jasondate.getSeconds(), 2);
-    }
-
-    function pad(n, width) {
-        n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-    }
-
-</script>
+<!--    function fileUploadAction() {-->
+<!--        console.log("fileUploadAction");-->
+<!--        $("#input_imgs").trigger('click');-->
+<!--    }-->
+
+<!--    function handleImgFileSelect(e) {-->
+
+<!--        // 이미지 정보들을 초기화-->
+<!--        sel_files = [];-->
+<!--        $(".imgs_wrap").empty();-->
+
+<!--        var files = e.target.files;-->
+<!--        var filesArr = Array.prototype.slice.call(files);-->
+
+<!--        var index = 0;-->
+<!--        filesArr.forEach(function(f) {-->
+<!--            if(!f.type.match("image.*")) {-->
+<!--                alert("확장자는 이미지 확장자만 가능합니다.");-->
+<!--                return;-->
+<!--            }-->
+
+<!--            sel_files.push(f);-->
+
+<!--            var reader = new FileReader();-->
+<!--            reader.onload = function(e) {-->
+<!--                var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";-->
+<!--                $(".imgs_wrap").append(html);-->
+<!--                index++;-->
+
+<!--            }-->
+<!--            reader.readAsDataURL(f);-->
+
+<!--        });-->
+<!--    }-->
+
+
+<!--    function deleteImageAction(index) {-->
+<!--        console.log("index : "+index);-->
+<!--        console.log("sel length : "+sel_files.length);-->
+
+<!--        sel_files.splice(index, 1);-->
+
+<!--        var img_id = "#img_id_"+index;-->
+<!--        $(img_id).remove();-->
+<!--    }-->
+
+<!--    function fileUploadAction() {-->
+<!--        console.log("fileUploadAction");-->
+<!--        $("#input_imgs").trigger('click');-->
+<!--    }-->
+
+<!--</script>-->
+
+
+<!--<script type="text/javascript">-->
+
+
+<!--    var performInfo = {},-->
+<!--        pagearr,-->
+<!--        addBtn = $('#addBtn'),-->
+<!--        updateBtn = $('#updateBtn'),-->
+<!--        cancelBtn = $('#cancelBtn'),-->
+<!--        noItem = $('#no'),-->
+<!--        deleteTagItem = $('#deleteTag'),-->
+<!--        nameItem = $('#name'),-->
+<!--        genreItem = $('#genre'),-->
+<!--        entryDateItem = $('#entryDate'),-->
+<!--        locationItem = $('#location'),-->
+<!--        mapLatitudeItem  = $('#mapLatitude'),-->
+<!--        mapLongitudeItem  = $('#mapLongitude'),-->
+<!--        detailDescItem = $('#detailDesc'),-->
+<!--        specialDescItem = $('#specialDesc'),-->
+<!--        mediasItem = $('#medias'),-->
+<!--        file1Item = $('#file1'),-->
+<!--        infolist = $('#infolist > tbody');-->
+
+
+<!--    //$('#entryDate').datetimepicker();-->
+<!--    $('#entryDate').datetimepicker({-->
+<!--        step:10,  //분단위 설정-->
+<!--        format: 'Y-m-d H:i'-->
+<!--    });-->
+<!--    jQuery.datetimepicker.setLocale('ko');-->
+
+<!--    $(document.body).on('login', (event, obj) => {-->
+<!--        console.log('로그인 정보 가져오기:', loginUser.type);-->
+<!--        load();-->
+<!--    });-->
+
+<!--    $('header').load('../header.html');-->
+
+<!--    //$('footer').load('../footer.html');-->
+
+
+<!--    var index = location.href.indexOf('?');-->
+
+<!--    //$(document.body).on('login', (event, obj) => {-->
+
+<!--    function load() {-->
+<!--        if (index != -1) {-->
+<!--            var qs = location.href.substr(index + 1);-->
+<!--            pagearr = qs.split('=');-->
+<!--            $('#htitle').html("공연 정보");-->
+<!--            $('.my-new').css('display', 'none');-->
+<!--            $(() => {-->
+
+<!--                // 공연정보-->
+<!--                $.ajax('../json/performance/' + pagearr[1], {-->
+<!--                    dataType: 'json',-->
+<!--                    async : false,-->
+<!--                    success: (result) => {-->
+<!--                        // 다른 함수에서 사용-->
+<!--                        performInfo = result.data;-->
+
+<!--                        //for (var i = 0; i < result.data.medias.length; i++) {-->
+<!--                        for (var data of performInfo.medias) {-->
+<!--                            if (data.filename != null) {-->
+<!--                                mediasItem.append("<img src='../download/" + data.filename + "' height=100>");-->
+<!--                                //mediasItem.append("<a href='/download/" + data.filename + "'>" + data.filename + "</a><br>");-->
+<!--                            }-->
+<!--                        };-->
+
+<!--                        // formData-->
+<!--                        noItem.val(performInfo.no);-->
+<!--                        deleteTagItem.val(performInfo.deleteTag);-->
+<!--                        nameItem.val(performInfo.name);-->
+<!--                        genreItem.append('<option selected>' + performInfo.genre + '</option>')-->
+<!--                        entryDateItem.val(formatDateTime(performInfo.entryDate));-->
+<!--                        locationItem.val(performInfo.location);-->
+<!--                        mapLatitudeItem.val(performInfo.mapLatitude);-->
+<!--                        mapLongitudeItem.val(performInfo.mapLongitude);-->
+<!--                        detailDescItem.val(performInfo.detailDesc);-->
+<!--                        specialDescItem.val(performInfo.specialDesc);-->
+
+<!--                    },-->
+<!--                    error: () => {-->
+<!--                        window.alert('view 서버 실행 오류!');-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--            $('#htitle').html("공연 수정");-->
+<!--            cancelBtn.text("취소");-->
+<!--            $('.my-new').css('display', 'none');-->
+
+<!--        } else {-->
+<!--            $('#htitle').html("공연 등록");-->
+<!--            cancelBtn.text("취소");-->
+<!--            $('.my-view').css('display', 'none');-->
+<!--        }-->
+<!--    }-->
+
+<!--    addBtn.click(() => {-->
+
+<!--        console.log("");-->
+<!--        var formData = new FormData($("#formData")[0]);-->
+
+<!--        for(var i=0, len=sel_files.length; i<len; i++) {-->
+<!--            formData.append('files', sel_files[i]);-->
+<!--        }-->
+
+<!--        if(sel_files.length < 1) {-->
+<!--            alert("한개이상의 파일을 선택해주세요.");-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // 공연정보 전송-->
+<!--        $.ajax({-->
+<!--            url: '../json/performance2/add',-->
+<!--            data: formData,-->
+<!--            dataType: 'json',-->
+<!--            processData: false,-->
+<!--            contentType: false,-->
+<!--            //cache: false,-->
+<!--            method: 'POST',-->
+<!--            success: function(result) {-->
+<!--                location.href = "list.html";-->
+<!--            },-->
+<!--            error: () => {-->
+<!--                window.alert('서버 실행 오류!');-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    updateBtn.click(() => {-->
+
+<!--        if (updateBtn.text() == "수정 저장") {-->
+<!--            var formData = new FormData($("#formData")[0]);-->
+
+<!--            for(var i=0, len=sel_files.length; i<len; i++) {-->
+<!--                formData.append('files', sel_files[i]);-->
+<!--            }-->
+
+<!--            if(sel_files.length < 1) {-->
+<!--                alert("한개이상의 파일을 선택해주세요.");-->
+<!--                return;-->
+<!--            }-->
+
+<!--            $.ajax({-->
+<!--                url: '../json/performance/update',-->
+<!--                data: formData,-->
+<!--                dataType: 'json',-->
+<!--                processData: false,-->
+<!--                contentType: false,-->
+<!--                //cache: false,-->
+<!--                method: 'POST',-->
+<!--                success: function(result) {-->
+<!--                    location.href = "detail.html?no="+ performInfo.no;-->
+<!--                },-->
+<!--                error: () => {-->
+<!--                    window.alert('서버 실행 오류!');-->
+<!--                }-->
+<!--            });-->
+<!--        } else {-->
+<!--            location.href = "detail.html?no="+ performInfo.no;-->
+<!--        }-->
+<!--    });-->
+
+<!--    cancelBtn.click(() => {-->
+<!--        if (index == -1) {-->
+<!--            location.href = "list.html";-->
+<!--        } else {-->
+<!--            location.href = "detail.html?no="+ performInfo.no;-->
+<!--        }-->
+<!--    });-->
+
+<!--    function formatDate(jason) {-->
+<!--        var jasondate = new Date(jason);-->
+
+<!--        return jasondate.getFullYear() + '-' +-->
+<!--            pad((jasondate.getMonth() + 1), 2) + '-' +-->
+<!--            pad(jasondate.getDate(), 2);-->
+<!--    }-->
+
+<!--    function formatDateTime(jason) {-->
+<!--        var jasondate = new Date(jason);-->
+
+<!--        return jasondate.getFullYear() + '-' +-->
+<!--            pad((jasondate.getMonth() + 1), 2) + '-' +-->
+<!--            pad(jasondate.getDate(), 2) + ' ' +-->
+<!--            pad(jasondate.getHours(), 2) + ':' +-->
+<!--            pad(jasondate.getMinutes(), 2);-->
+<!--        //pad(jasondate.getSeconds(), 2);-->
+<!--    }-->
+
+<!--    function pad(n, width) {-->
+<!--        n = n + '';-->
+<!--        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;-->
+<!--    }-->
+
+<!--</script>-->
 
 
 </body>

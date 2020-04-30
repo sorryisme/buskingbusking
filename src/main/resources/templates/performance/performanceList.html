@@ -8,58 +8,54 @@
 </head>
 <body>
 <header th:replace="/fragments/header"></header>
-<div class='container' >
 
-    <div id='info-list' class='form-group' style="position: relative;">
-        <h3>추천 공연</h3>
-        <div class="hover01 column"></div>
+<div class='container'>
+    <div class="mt20"></div>
+    <h3>추천 공연</h3>
+    <nav class="navbar navbar-light justify-content-between float-right">
+        <form class="form-inline">
+            <input id="words" name="words"
+                   class="form-control form-control-sm mr-sm-2" type="search"
+                   placeholder="검색" aria-label="Search">
+            <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0"
+                    type="button">Search</button>
+        </form>
+    </nav>
+    <table class='table table-hover'>
+        <thead>
+        <tr>
+            <th>공연명</th><th>아티스트명</th><th>공연장르</th><th>공연날짜</th><th>공연장소</th><th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="performance : ${performanceList}">
+            <td><a th:href="@{/performance/view/{performanceId}(performanceId=${performance.id})}" th:text="${performance.performanceName}"></a></td>
+            <td th:text="${performance.member.nickName}"></td>
+            <td th:text="${performance.performanceGenre}"></td>
+            <td th:text="${performance.performanceDate}"></td>
+            <td th:text="${performance.performanceLocation}"></td>
+            <td th:text="${performance.viewCnt}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div class="float-right">
+        <a href='/performance/form' class='btn btn-primary btn-sm'>추가</a>
     </div>
 
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a id="prevBtn" class="page-link" tabindex="-1">이전</a></li>
 
-    <div class='form-group' style="position: relative; left:50px;">
-        <nav class="navbar navbar-light justify-content-between">
-            <!-- <button id="addBtn" type="button" class='btn btn-primary btn-sm my-view'>공연등록</button> -->
-            <form class="form-inline">
-                <input id="words" name="words"
-                       class="form-control form-control-sm mr-sm-2" type="search"
-                       placeholder="검색" aria-label="Search">
-                <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0"
-                        type="button">Search</button>
-            </form>
-        </nav>
+            <li class="page-item">
+                <a id="currBtn" class="page-link" href="#">1</a></li>
 
-    </div>  <!-- form-group -->
-
-
-    <div class='form-group' id='info-list' style="position: relative;">
-        <div class="table-users" >
-            <div class="header">공연 정보</div>
-            <table id="list">
-                <thead>
-                <tr>
-                    <th></th><th width="200">공연명</th><th width="100">아티스트명</th>
-                    <th width="100">공연장르</th><th width="150">공연날짜</th>
-                    <th width="100">공연장소</th><th width="100">조회수</th>
-                </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a id="prevBtn" class="page-link" tabindex="-1">이전</a></li>
-
-                <li class="page-item">
-                    <a id="currBtn" class="page-link" href="#">1</a></li>
-
-                <li class="page-item ">
-                    <a id="nextBtn" class="page-link" tabindex="0">다음</a></li>
-            </ul>
-        </nav>
-    </div>
-
+            <li class="page-item ">
+                <a id="nextBtn" class="page-link" tabindex="0">다음</a></li>
+        </ul>
+    </nav>
 </div>
+<!-- Container 끝 -->
 </body>
 </html>
