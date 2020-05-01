@@ -15,7 +15,7 @@
         <div class='form-group row my-view' style='background-color:white;'>
             <label for='no' class='col-sm-2 col-form-label'>공연번호</label>
             <div class='col-sm-10'>
-                <input class='form-control' readonly id='no' type='number' name='no' value='0'>
+                <input class='form-control' readonly id='no' type='number' name='no' th:value="${performance.id}">
             </div>
         </div>
 
@@ -35,7 +35,7 @@
         <div class='form-group row'>
             <label for='name' class='col-sm-2 col-form-label'>공연명</label>
             <div class='col-sm-10'>
-                <input class='form-control' id='name' type='text' name='name' value=''>
+                <input class='form-control' id='name' type='text' name='name' th:value="${performance.performanceName}">
             </div>
         </div>
 
@@ -60,14 +60,14 @@
         <div class='form-group row'>
             <label for='entryDate' class='col-sm-2 col-form-label'>공연날짜</label>
             <div class='col-sm-10'>
-                <input class='form-control' id='entryDate' type='text' name='entryDate' value=''>
+                <input class='form-control' id='entryDate' type='text' name='entryDate' th:value="${performance.performanceDate}">
             </div>
         </div>
 
         <div class='form-group row'>
             <label for='location' class='col-sm-2 col-form-label'>공연장소</label>
             <div class='col-sm-8'>
-                <input class='form-control' id='location' type='text' name='location' style='display: inline;' value=''>
+                <input class='form-control' id='location' type='text' name='location' style='display: inline;' th:value="${performance.performanceLocation}">
             </div>
             <span>
                 <button type="button" id="modalBtn" class="btn btn-primary btn-sm" style="margin-left:20px"
@@ -93,7 +93,7 @@
         <div class='form-group row'>
             <label for='detailDesc' class='col-sm-2 col-form-label'>공연내용</label>
             <div class='col-sm-10'>
-                <textarea class='form-control' id='detailDesc' name='detailDesc' rows='5' value=''></textarea>
+                <textarea class='form-control' id='detailDesc' name='detailDesc' rows='5' th:value="${performance.performanceDesc}"></textarea>
             </div>
         </div>
 
@@ -149,9 +149,7 @@
 
     <div class='form-group row'>
         <div class='col-sm-10'>
-            <button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>공연 등록</button>
             <button id="updateBtn" type="button" class='btn btn-primary btn-sm my-view'>수정 저장</button>
-            <button id="cancelBtn" type="button" class='btn btn-primary btn-sm'>취소</button>
         </div>
     </div>
 </div>

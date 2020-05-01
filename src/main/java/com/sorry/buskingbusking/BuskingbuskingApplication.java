@@ -2,8 +2,10 @@ package com.sorry.buskingbusking;
 
 import com.sorry.buskingbusking.Repository.MemberRepository;
 import com.sorry.buskingbusking.Repository.NoticeRepository;
+import com.sorry.buskingbusking.Repository.PerformanceRepository;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
+import com.sorry.buskingbusking.domain.Performance;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -66,6 +68,37 @@ public class BuskingbuskingApplication {
 							.viewCnt(0)
 							.build()
 					);
+			}); //for each 종료
+		};
+	}
+
+	@Bean
+	public CommandLineRunner runner3(PerformanceRepository performanceRepository, MemberRepository memberRepository) throws Exception{
+		return (args)->{
+			Member writer = Member.builder()
+					.email("wivipp39@naver.com")
+					.nickName("nickName")
+					.mobile("01071467182")
+					.delYn("N")
+					.regDt(LocalDateTime.now())
+					.password("1234")
+					.build();
+			memberRepository.save(writer);
+
+			IntStream.rangeClosed(1, 10).forEach(index ->{
+				performanceRepository.save(
+						Performance.builder()
+								.member(writer)
+								.performanceName("공연" + index)
+								.performanceGenre("음악")
+								.performanceDate("20200429")
+								.performanceLocation("강남")
+								.performanceDesc("설명")
+								.performanceRemark("비고")
+								.viewCnt(0)
+								.regDt(LocalDateTime.now())
+								.build()
+				);
 			}); //for each 종료
 		};
 	}

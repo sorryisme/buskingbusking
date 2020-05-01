@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,5 +18,11 @@ public class PerformanceServiceImpl implements PerformanceService {
     @Override
     public List<Performance> getPerformanceListAll() {
         return performanceRepository.findAll();
+    }
+
+    @Override
+    public Performance findPerformanceById(Long id) {
+        Optional<Performance> optionalPerformance = performanceRepository.findById(id);
+        return optionalPerformance.get();
     }
 }
