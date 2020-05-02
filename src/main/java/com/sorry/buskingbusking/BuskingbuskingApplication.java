@@ -1,8 +1,10 @@
 package com.sorry.buskingbusking;
 
+import com.sorry.buskingbusking.Repository.CommonCodeRepository;
 import com.sorry.buskingbusking.Repository.MemberRepository;
 import com.sorry.buskingbusking.Repository.NoticeRepository;
 import com.sorry.buskingbusking.Repository.PerformanceRepository;
+import com.sorry.buskingbusking.domain.CommonCode;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.Performance;
@@ -14,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
@@ -72,7 +75,7 @@ public class BuskingbuskingApplication {
 		};
 	}
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner3(PerformanceRepository performanceRepository, MemberRepository memberRepository) throws Exception{
 		return (args)->{
 			Member writer = Member.builder()
@@ -97,6 +100,22 @@ public class BuskingbuskingApplication {
 								.performanceRemark("비고")
 								.viewCnt(0)
 								.regDt(LocalDateTime.now())
+								.build()
+				);
+			}); //for each 종료
+		};
+	}
+
+	//@Bean
+	public CommandLineRunner runner4(CommonCodeRepository commonCodeRepository) throws Exception{
+		return (args)->{
+			IntStream.rangeClosed(1, 10).forEach(index ->{
+				commonCodeRepository.save(
+						CommonCode.builder()
+								.codeName("코드값"+index)
+								.codeDesc("코드설명"+index)
+								.regDt(LocalDateTime.now())
+								.updDt(LocalDateTime.now())
 								.build()
 				);
 			}); //for each 종료

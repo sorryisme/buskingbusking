@@ -185,3 +185,8 @@ ble>
 
 
 
+### Entity 복합키 사용
+
+- Entity 복합키를 사용할 때 다음과 같은 조건을 맞춰야한다
+  - @IdClass 선언
+  - Serializable 상속
