@@ -11,18 +11,11 @@
 <header th:replace="/fragments/header"></header>
 <div class='container'>
     <h3>공연 등록</h3>
-    <form id='formData' enctype="multipart/form-data">
-        <div class='form-group row my-view' style='background-color:white;'>
+    <form id='formData' enctype="multipart/form-data" action="/performance/insert" method="post">
+        <div class='form-group row my-view'>
             <label for='no' class='col-sm-2 col-form-label'>공연번호</label>
             <div class='col-sm-10'>
                 <input class='form-control' readonly id='no' type='number' name='no' value='0'>
-            </div>
-        </div>
-
-        <div class='form-group row' hidden="hidden">
-            <label for='deleteTag' class='col-sm-2 col-form-label'>삭제여부</label>
-            <div class='col-sm-10'>
-                <input class='form-control' readonly id='deleteTag' type='text' name='deleteTag' value=''>
             </div>
         </div>
 
@@ -114,7 +107,7 @@
         <div class='form-group row'>
             <label for='input_imgs' class='col-sm-2 col-form-label'>미리보기</label>
             <div class='col-sm-10'>
-                <input type="file" id="input_imgs" multiple/>
+                <input type="file" id="input_imgs" name="file"/>
                 <div class="imgs_wrap" >
                     <img id="img" />
                 </div>
@@ -150,7 +143,6 @@
     <div class='form-group row'>
         <div class='col-sm-10'>
             <button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>공연 등록</button>
-            <button id="updateBtn" type="button" class='btn btn-primary btn-sm my-view'>수정 저장</button>
             <button id="cancelBtn" type="button" class='btn btn-primary btn-sm'>취소</button>
         </div>
     </div>
@@ -167,6 +159,12 @@
 <script src="/js/lib/jquery/dist/jquery-migrate.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBgCD_-9xcUY_VkiLErKXAaAuGIHzHWQ&libraries=places&callback=initAutocomplete" async defer></script>
 <script>
+
+    $("#addBtn").click(function(){
+        alert("등록");
+        $("#formData").submit();
+    })
+
     let map;
     let marker;
     let maplat;

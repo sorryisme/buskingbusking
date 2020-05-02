@@ -190,3 +190,11 @@ ble>
 - Entity 복합키를 사용할 때 다음과 같은 조건을 맞춰야한다
   - @IdClass 선언
   - Serializable 상속
+
+
+
+## FetchType = Lazy
+
+- fetchType은 ManyToOne일 때 지정해줘야한다 (default : Eager)
+- OneToMany는 기본 값이 Fetch이다.
+

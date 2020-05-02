@@ -1,12 +1,16 @@
 package com.sorry.buskingbusking.domain.dto;
 
+import com.sorry.buskingbusking.domain.CommonFile;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Performance;
 import lombok.*;
 import org.aspectj.weaver.patterns.PerObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -36,6 +40,13 @@ public class PerformanceDTO {
     private LocalDateTime regDt;
 
     private LocalDateTime updDt;
+
+    private List<MultipartFile> commonFileList = new ArrayList<>();
+
+
+    public void addFile(MultipartFile file){
+        this.commonFileList.add(file);
+    }
 
     public Performance toEntity(){
         return Performance.builder()

@@ -10,4 +10,6 @@ public interface PerformanceService {
     List<Performance> getPerformanceListAll();
 
     Performance findPerformanceById(Long id);
+
+    Long insertPerformance(PerformanceDTO performanceDTO) throws Exception;
 }

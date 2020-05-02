@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -39,6 +41,9 @@ public class Performance {
 
     private LocalDateTime updDt;
 
+    @OneToMany
+    private List<CommonFile> fileList = new ArrayList<>();
+
     @Builder
     public Performance(Long id, Member member ,String performanceName, String performanceGenre, String performanceDate, String performanceLocation,
                        String performanceDesc, String performanceRemark, Integer viewCnt,LocalDateTime regDt, LocalDateTime updDt){
@@ -54,7 +59,6 @@ public class Performance {
         this.regDt = regDt;
         this.updDt = updDt;
     }
-
 
     public void addMember(Member member){
         this.member = member;
