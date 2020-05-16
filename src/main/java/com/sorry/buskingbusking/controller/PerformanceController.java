@@ -4,6 +4,7 @@ import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.Performance;
 import com.sorry.buskingbusking.domain.dto.PerformanceDTO;
 import com.sorry.buskingbusking.service.PerformanceService;
+import com.sorry.buskingbusking.util.OptionalUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 @Controller
 @Slf4j
@@ -45,12 +48,8 @@ public class PerformanceController {
         log.info(file.getName());
         log.info("{}",file.getSize());
 
-        if(file != null) {
-            performanceDTO.addFile(file);
-        }
-
+        OptionalUtil.addNullSafeFile(file, nullSafeFile -> performanceDTO.addFile(nullSafeFile) );
         performanceService.insertPerformance(performanceDTO);
-
 
         return "redirect:/performance/list";
     }

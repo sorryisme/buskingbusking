@@ -2,13 +2,10 @@ package com.sorry.buskingbusking.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static com.sun.tools.javac.util.Constants.format;
 
 public class FileUtil {
 
