@@ -14,7 +14,7 @@ public class PerformanceRequest {
     @Id
     @GeneratedValue
     @Column
-    private Long RequestNo;
+    private Long requestNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;

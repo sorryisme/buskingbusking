@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공연정보</title>
+    <link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/common/common.css'>
+</head>
+<body>
+<header th:replace="/fragments/header"></header>
+
+<div class='container'>
+    <div class="mt20"></div>
+    <h3>공연 요청</h3>
+    <nav class="navbar navbar-light justify-content-between float-right">
+        <form class="form-inline">
+            <input id="words" name="words"
+                   class="form-control form-control-sm mr-sm-2" type="search"
+                   placeholder="검색" aria-label="Search">
+            <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0"
+                    type="button">Search</button>
+        </form>
+    </nav>
+    <table class='table table-hover'>
+        <thead>
+        <tr>
+            <th>번호</th><th>신청자</th><th>등록일</th><th>요청일</th><th>위치</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="performanceRequest : ${performanceRequestList}">
+            <td><a th:href="@{/performanceRequest/view/{RequestNo}(RequestNo=${performanceRequest.requestNo})}" th:text="${performanceRequest.requestNo}"></a></td>
+            <td th:text="${performanceRequest.member.name}"></td>
+            <td th:text="${performanceRequest.requestGenre}"></td>
+            <td th:text="${performanceRequest.regDt}"></td>
+            <td th:text="${performanceRequest.requestDt}"></td>
+            <td th:text="${performanceRequest.requestLocation}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div class="float-right">
+        <a href='/performance/form' class='btn btn-primary btn-sm'>추가</a>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a id="prevBtn" class="page-link" tabindex="-1">이전</a></li>
+
+            <li class="page-item">
+                <a id="currBtn" class="page-link" href="#">1</a></li>
+
+            <li class="page-item ">
+                <a id="nextBtn" class="page-link" tabindex="0">다음</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- Container 끝 -->
+</body>
+</html>
