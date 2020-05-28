@@ -1,8 +1,5 @@
 package com.sorry.buskingbusking.domain;
 
-import com.sorry.buskingbusking.domain.dto.MemberDTO;
-import jdk.internal.perf.Perf;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +32,9 @@ public class Member {
     private String msgId;
 
     private String delYn;
+
+    @Embedded
+    private Address address;
 
     private LocalDateTime regDt;
 

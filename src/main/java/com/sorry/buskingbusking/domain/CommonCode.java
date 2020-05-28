@@ -1,12 +1,10 @@
 package com.sorry.buskingbusking.domain;
 
-import jdk.jfr.Category;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.sorry.buskingbusking.domain;
 
 import com.sorry.buskingbusking.util.FileUtil;
-import jdk.vm.ci.meta.Local;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static com.sorry.buskingbusking.setting.FileSetting.PERFORMANCE_PATH;
 
