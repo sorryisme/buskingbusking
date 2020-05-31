@@ -1,5 +1,6 @@
 package com.sorry.buskingbusking.controller;
 
+import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.dto.MemberDTO;
 import com.sorry.buskingbusking.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -26,7 +30,12 @@ public class MemberController {
 
     @GetMapping("/admin/member/getList")
     public String memberGetList(Model model){
-        model.addAttribute("memberList", memberService.getMemberList());
+        List<Member> memberList =  memberService.getMemberList();
+        List<MemberDTO> memberDTOList = memberList.stream()
+                                                    .map(member -> member.toDTO())
+                                                    .collect(Collectors.toList());
+
+        model.addAttribute("memberList", memberDTOList);
         return "/admin/member/memberList";
     }
 

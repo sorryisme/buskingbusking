@@ -1,5 +1,6 @@
 package com.sorry.buskingbusking.domain;
 
+import com.sorry.buskingbusking.domain.dto.MemberDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ public class Member {
     private Long id;
 
     private String email;
+
+    @OneToOne
+    private CommonFile profile;
 
     private String password;
 
@@ -47,9 +51,10 @@ public class Member {
     private List<PerformanceRequest> performanceRequestList = new ArrayList<>();
 
     @Builder
-    public Member(Long id, String email, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
+    public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
         this.id = id;
         this.email = email;
+        this.profile = profile;
         this.password = password;
         this.nickName = nickName;
         this.mobile = mobile;
@@ -58,6 +63,22 @@ public class Member {
         this.delYn = delYn;
         this.regDt = regDt;
         this.updDt = updDt;
+    }
+
+    public MemberDTO toDTO(){
+        return MemberDTO.builder()
+                        .id(this.id)
+                        .email(this.email)
+                        .profile(this.profile)
+                        .password(this.password)
+                        .nickName(this.nickName)
+                        .mobile(this.mobile)
+                        .msgYn(this.msgYn)
+                        .msgId(this.msgId)
+                        .delYn(this.delYn)
+                        .regDt(this.regDt)
+                        .updDt(this.updDt)
+                        .build();
     }
 
 
