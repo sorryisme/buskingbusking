@@ -41,4 +41,14 @@ public class FileUtil {
 
         return fileName;
     }
+
+    public static Boolean deleteMultipartFile(String filePath) throws IOException{
+        File file = new File(filePath);
+        if(!file.exists()){
+            throw new IOException("파일이 존재하지 않습니다.");
+        }
+        return file.delete();
+    }
+
+
 }

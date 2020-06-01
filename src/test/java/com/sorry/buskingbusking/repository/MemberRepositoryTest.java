@@ -1,7 +1,10 @@
 package com.sorry.buskingbusking.repository;
 
 import com.sorry.buskingbusking.Repository.MemberRepository;
+import com.sorry.buskingbusking.domain.Address;
 import com.sorry.buskingbusking.domain.Member;
+import com.sorry.buskingbusking.setting.FileSetting;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +32,29 @@ public class MemberRepositoryTest {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    File file;
+
+    Address address;
+
+    @Before
+    public void 파일준비(){
+        String fileDir = FileSetting.MOCK_FILE_PATH.getValue();
+        String fileName = "test_file.PNG";
+        String fileFullPath  = fileDir + "/" + fileName;
+        file = new File(fileFullPath);
+    }
+
+    @Before
+    public void 주소준비(){
+        address = Address.builder()
+                        .zipcode("04967")
+                        .address1("서울특별시 광진구")
+                        .address2("광장로7길 24")
+                        .addressExt("1층")
+                        .build();
+    }
+
 
     @Test
     public void 회원가입_저장(){
@@ -104,9 +131,9 @@ public class MemberRepositoryTest {
                 .updDt(LocalDateTime.now()).build();
 
         testEntityManager.persist(savedMember);
-        Long savedId = savedMember.getId();
+
         Member updateMember = Member.builder()
-                .id(savedId)
+                .id(savedMember.getId())
                 .email("updated@0naver.com")
                 .password("9999")
                 .nickName("jisungkim")
@@ -115,13 +142,18 @@ public class MemberRepositoryTest {
                 .delYn("N")
                 .updDt(LocalDateTime.now())
                 .build();
-        memberRepository.save(updateMember);
-        Optional<Member> optionalMember = memberRepository.findById(savedId);
+
+        savedMember.updateMember(updateMember);
+        testEntityManager.flush();
+
+
+        Optional<Member> optionalMember = memberRepository.findById(savedMember.getId());
         Member updatedMember = optionalMember.get();
 
         assertThat(updatedMember).isNotNull();
-        assertThat(updatedMember.getEmail()).isEqualTo("updated@naver.com");
-
+        assertThat(updatedMember.getEmail()).isEqualTo("updated@0naver.com");
+        assertThat(updatedMember.getPassword()).isEqualTo("9999");
+        assertThat(updatedMember.getNickName()).isEqualTo("jisungkim");
     }
 
 

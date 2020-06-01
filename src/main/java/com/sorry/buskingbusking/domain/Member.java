@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,18 @@ public class Member {
         this.regDt = regDt;
         this.updDt = updDt;
     }
-
+    public void updateMember(Member member){
+        this.id = member.getId();
+        this.email = member.getEmail();
+        this.profile = member.getProfile();
+        this.password = member.getPassword();
+        this.nickName = member.getNickName();
+        this.mobile = member.getMobile();
+        this.msgYn = member.getMsgYn();
+        this.msgId = member.getMsgId();
+        this.delYn = member.getDelYn();
+        this.updDt = LocalDateTime.now();
+    }
     public MemberDTO toDTO(){
         return MemberDTO.builder()
                         .id(this.id)

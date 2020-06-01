@@ -13,10 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,6 +32,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -47,20 +50,9 @@ public class MemberControllerTest {
 
     public Member member;
 
-    public RequestBuilder postRequestBuilder;
-
     public MemberDTO publicMember;
 
-    public MultipartFile mockMultipartFile;
-
-    @Before
-    public void 파일생성() throws Exception {
-        String fileDir = FileSetting.MOCK_FILE_PATH.getValue();
-        String fileName = "test_file.PNG";
-        String fileFullPath  = fileDir + "/" + fileName;
-        File file = new File(fileFullPath);
-        mockMultipartFile = new MockMultipartFile(fileFullPath, fileName,null,new FileInputStream(file));
-    }
+    public MockHttpServletRequestBuilder rb;
 
     @Before
     public void 일반회원_DTO_생성(){
@@ -76,14 +68,9 @@ public class MemberControllerTest {
                                 .build();
 
 
+         rb  = post("/member/saveMember").param("email",publicMember.getEmail());
 
-        //TODO URL 작업 진행 중
-        postRequestBuilder = MockMvcRequestBuilders
-                            .post("/member/saveMember")
-                            .accept(MediaType.ALL)
-                            .content(publicMember.toString());
 
-      //  given(post("")).willReturn();
     }
 
     @Before
@@ -126,12 +113,8 @@ public class MemberControllerTest {
     @Test
     public void 회원가입_일반회원() throws Exception{
 
-
-
-
         mvc.perform(post("/member/saveMember"))
                     .andExpect(status().isOk());
-
 
     }
 

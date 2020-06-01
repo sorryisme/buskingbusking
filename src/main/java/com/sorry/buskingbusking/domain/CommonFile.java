@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
@@ -22,7 +19,7 @@ public class CommonFile {
 
     @Id
     @Column(name="file_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String filePath;
@@ -61,5 +58,16 @@ public class CommonFile {
         this.regDt = LocalDateTime.now();
     }
 
+    public void deleteFile(String filePath) throws IOException {
+        FileUtil.deleteMultipartFile(filePath);
+    }
+
+    public void updateFile(MultipartFile updateFile ,String delteFilePath) throws IOException {
+        boolean result = FileUtil.deleteMultipartFile(filePath);
+
+        if(result){
+            saveFileList(updateFile);
+        }
+    }
 
 }
