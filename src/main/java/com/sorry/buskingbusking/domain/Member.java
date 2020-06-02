@@ -23,7 +23,7 @@ public class Member {
 
     private String email;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private CommonFile profile;
 
     private String password;
@@ -52,7 +52,7 @@ public class Member {
     private List<PerformanceRequest> performanceRequestList = new ArrayList<>();
 
     @Builder
-    public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt) {
+    public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, Address address , LocalDateTime regDt, LocalDateTime updDt) {
         this.id = id;
         this.email = email;
         this.profile = profile;
@@ -62,20 +62,22 @@ public class Member {
         this.msgYn = msgYn;
         this.msgId = msgId;
         this.delYn = delYn;
+        this.address = address;
         this.regDt = regDt;
         this.updDt = updDt;
     }
     public void updateMember(Member member){
         this.id = member.getId();
         this.email = member.getEmail();
-        this.profile = member.getProfile();
         this.password = member.getPassword();
         this.nickName = member.getNickName();
         this.mobile = member.getMobile();
         this.msgYn = member.getMsgYn();
         this.msgId = member.getMsgId();
         this.delYn = member.getDelYn();
+        this.address = member.getAddress();
         this.updDt = LocalDateTime.now();
+
     }
     public MemberDTO toDTO(){
         return MemberDTO.builder()

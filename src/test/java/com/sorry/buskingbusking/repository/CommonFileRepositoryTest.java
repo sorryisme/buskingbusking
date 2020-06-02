@@ -60,7 +60,6 @@ public class CommonFileRepositoryTest {
         assertThat(findFile.getFilePath()).isEqualTo(FileSetting.PERFORMANCE_PATH.getValue());
     }
 
-    //TODO 삭제 테스트 코드 작성
     @Test
     public void 파일_업데이트() throws Exception {
         CommonFile commonFile = new CommonFile();
