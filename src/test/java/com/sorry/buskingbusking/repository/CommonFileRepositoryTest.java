@@ -30,16 +30,20 @@ public class CommonFileRepositoryTest {
     CommonFileRepository commonFileRepository;
 
     MultipartFile multipartFile;
+    MultipartFile updateFile;
+
+    private MultipartFile makeMockMultiPartFile(String fileNm) throws IOException{
+        String fileDir = FileSetting.MOCK_FILE_PATH.getValue();
+        String fileName = fileNm;
+        String fileFullPath = fileDir + "/" + fileName;
+        File file = new File(fileFullPath);
+        return new MockMultipartFile(fileName, new FileInputStream(file));
+    }
 
     @Before
     public void 파일준비() throws IOException {
-
-            String fileDir = FileSetting.MOCK_FILE_PATH.getValue();
-            String fileName = "test_file.PNG";
-            String fileFullPath = fileDir + "/" + fileName;
-            File file = new File(fileFullPath);
-            multipartFile = new MockMultipartFile(fileName, new FileInputStream(file));
-
+        multipartFile = makeMockMultiPartFile("test_file.PNG");
+        updateFile = makeMockMultiPartFile("update_file.PNG");
     }
 
     @Test
@@ -56,7 +60,36 @@ public class CommonFileRepositoryTest {
         assertThat(findFile.getFilePath()).isEqualTo(FileSetting.PERFORMANCE_PATH.getValue());
     }
 
-    //TODO 파일 업데이트, 삭제 테스트 코드 작성
+    //TODO 삭제 테스트 코드 작성
+    @Test
+    public void 파일_업데이트() throws Exception {
+        CommonFile commonFile = new CommonFile();
+        commonFile.saveFileList(multipartFile);
+        testEntityManager.persist(commonFile);
+        commonFile.updateFile(commonFile.getFullPath(), updateFile);
+        testEntityManager.flush();
+
+        assertThat(commonFile.getFileRealName()).isEqualTo(updateFile.getOriginalFilename());
+        assertThat(commonFile.getFileSize()).isEqualTo(updateFile.getSize());
+
+        File savedFile = new File(commonFile.getFullPath());
+
+        assertThat(savedFile.getName()).isEqualTo(commonFile.getFileSaveName());
+        assertThat(savedFile.exists()).isTrue();
+    }
+
+    @Test
+    public void 파일_삭제() throws Exception {
+        CommonFile commonFile = new CommonFile();
+        commonFile.saveFileList(multipartFile);
+        testEntityManager.persist(commonFile);
+        commonFile.deleteFile(commonFile.getFullPath());
+        testEntityManager.flush();
+
+        assertThat(commonFile.getDelYn()).isEqualTo("Y");
+        File deleteFile = new File(commonFile.getFullPath());
+        assertThat(deleteFile.exists()).isFalse();
+    }
 
 
 }

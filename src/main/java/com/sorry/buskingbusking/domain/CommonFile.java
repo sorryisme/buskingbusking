@@ -58,12 +58,17 @@ public class CommonFile {
         this.regDt = LocalDateTime.now();
     }
 
-    public void deleteFile(String filePath) throws IOException {
-        FileUtil.deleteMultipartFile(filePath);
+    public String getFullPath (){
+        return filePath + "/" + fileSaveName;
     }
 
-    public void updateFile(MultipartFile updateFile ,String delteFilePath) throws IOException {
-        boolean result = FileUtil.deleteMultipartFile(filePath);
+    public void deleteFile(String filePath) throws IOException {
+        FileUtil.deleteMultipartFile(filePath);
+        this.delYn = "Y";
+    }
+
+    public void updateFile(String deleteFilePath ,MultipartFile updateFile) throws IOException {
+        boolean result = FileUtil.deleteMultipartFile(deleteFilePath);
 
         if(result){
             saveFileList(updateFile);
