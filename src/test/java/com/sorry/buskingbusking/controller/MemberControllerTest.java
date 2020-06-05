@@ -68,9 +68,7 @@ public class MemberControllerTest {
                                 .build();
 
 
-         rb  = post("/member/saveMember").param("email",publicMember.getEmail());
-
-
+        // rb  = post("/member/saveMember").param("email",publicMember.getEmail());
     }
 
     @Before
@@ -115,6 +113,14 @@ public class MemberControllerTest {
 
         mvc.perform(post("/member/saveMember"))
                     .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void 회원수정_일반회원() throws Exception{
+
+        mvc.perform(post("/member/updateMember"))
+                .andExpect(status().isOk());
 
     }
 

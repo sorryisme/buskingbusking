@@ -17,7 +17,7 @@ import java.util.List;
 public class Member {
 
     @Id
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,8 +26,10 @@ public class Member {
     @OneToOne(fetch = FetchType.LAZY)
     private CommonFile profile;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(length = 30, nullable = false)
     private String nickName;
 
     private String mobile;
