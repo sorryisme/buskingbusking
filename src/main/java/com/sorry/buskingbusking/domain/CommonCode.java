@@ -15,7 +15,7 @@ import java.util.List;
 public class CommonCode {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="code_id")
     private Long id;
 
@@ -28,7 +28,7 @@ public class CommonCode {
     private LocalDateTime updDt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="parent_id")
+    @JoinColumn(name="parent_id",referencedColumnName = "code_id")
     private CommonCode parent;
 
     @OneToMany(mappedBy = "parent")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
@@ -7,9 +7,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <link rel='stylesheet' href='/css/member/signUp.css'>
+<link rel='stylesheet' href='/css/common/common.css'>
 <body>
+<header th:replace="/fragments/header"></header>
 
-<form id='formData' action="/member/saveMember" method="post">
+
+<form id='formData' action="/member/saveMember" method="post" enctype="multipart/form-data">
 
     <div id="mainDiv" class="mainDiv">
         <div class="title">
@@ -22,38 +25,31 @@
 
         <div id="formDivOne">
             <div id="divOne">
+
                 <div id="photoInputDiv" class="photoInputDiv">
                     <div id="image-cropper">
                         <h4>프로필 이미지</h4>
-                        <input type="file" class="cropit-image-input">
+                        <input type="file"  name="file" class="cropit-image-input">
                     </div>
-
                 </div>
-
 
                 <div id="personalInfoDiv" class="personalInfoDiv">
                     <div class="PersonalPositioning">
                         <div id="emailDiv" class="emailDiv">
                             <h4>개인 정보 입력</h4>
-                            <label class="icon" for="email"><i class="icon-envelope" style="margin-left:-2px;"></i></label>
+                            <label class="icon" for="email"><i class="icon-envelope"></i></label>
                             <input type="email" id='email' name="email" placeholder="example@email.com" required/>
-                            <!--<input type="email" id='email' name="email" onkeyup="checkEmail()" placeholder="example@email.com" required/>-->
-                            <div class="checkMessages" id="chkEmailMsg">
                                 <p></p>
                             </div>
                         </div>
 
                         <div id="nickNameDiv">
                             <label class="icon" for="nickName"><i class="icon-user"></i></label>
-                            <input type="text" id="nickName" name="nickName" onkeyup="checkNickName()" placeholder="닉네임" required/>
-                            <div class="checkMessages" id="chkNickMsg">
-                                <p></p>
-                            </div>
+                            <input type="text" id="nickName" name="nickName" placeholder="닉네임" required/>
                         </div>
 
                         <div id="passwordDiv">
                             <label class="icon" for="password"><i class="icon-shield"></i></label>
-                            <!--<input type="password" id="password" name="password" onkeyup="checkPassword()" placeholder="비밀번호" required/>-->
                             <input type="password" id="password" name="password" placeholder="비밀번호" required/>
                             <div class="checkMessages">
                             </div>
@@ -77,57 +73,40 @@
                         <div id='messageIdDiv'>
                             <label class="icon" for='msgId'><i class="icon-user"></i></label>
                             <input type='text' id='msgId' name='msgId' placeholder="카카오톡 ID">
-                            <div class="checkMessages" id="chkMessageId">
-                                <p></p>
-                            </div>
                         </div>
-                    </div>
+                    </div><!-- personInfo End -->
                 </div>
-
             </div>
 
             <div id="divTwo">
                 <div id="artistInfoDiv" class="artistInfoDiv">
 
                     <div class="artistPositioning">
-                        <h3 style="margin-top:10px;">아티스트 정보</h3>
+                        <h3>아티스트 정보</h3>
 
                         <div id="artistNameDiv" class="artistNameDiv">
                             <label class="icon" for='artistName'><i class="icon-male"></i></label>
                             <input id='artistName' type='text' name='artist.artistName' value="" placeholder="아티스트/팀명">
-                            <div class="checkMessages" id="chkArtistName">
-                                <p></p>
-                            </div>
                         </div>
 
                         <div id="artistMemberDiv" class="artistMemberDiv">
                             <label class="icon" for='artistMember'><i class="icon-male"></i></label>
-                            <input id='artistMember' type='text' name='artist.artistMember'
-                                   value="" placeholder="팀 구성원">
-                            <div class="checkMessages" id="chkArtistMember">
-                                <p></p>
-                            </div>
+                            <input id='artistMember' type='text' name='artist.artistMember' value="" placeholder="팀 구성원">
                         </div>
 
                         <div id="joinDateDiv" class="joinDateDiv">
                             <label class="icon" for='joinDate'><i class="icon-male"></i></label>
                             <input id='joinDate' type='date' placeholder="팀 결성 날짜">
-                            <div class="checkMessages" id="chkJoinDate">
-                                <p></p>
-                            </div>
                         </div>
 
                         <div id="profileDiv" class="profileDiv">
                             <textarea id='profile' name='artist.profile' placeholder="아티스트 프로필"></textarea>
-                            <div class="checkMessages" id="chkProfile">
-                                <p></p>
-                            </div>
                         </div>
 
                     </div>
                 </div>
-<!--
-                <div id="InterestInfoDiv" class="InterestInfoDiv" style="margin-top: 30px; margin-bottom: 30px;">
+
+                <div id="InterestInfoDiv" class="InterestInfoDiv">
 
                     <div id="interestAreasDiv">
                         <label for='interestAreas' id="interestAreas">관심 지역</label>
@@ -137,11 +116,7 @@
                                 <tbody id="areasTbody">
                                 </tbody>
                             </table>
-                            <div class="checkMessages" id="chkAreas" style="color:red;">
-                                <p></p>
-                            </div>
-
-                        </div>
+                          </div>
                     </div>
 
 
@@ -151,22 +126,20 @@
                         <div id="genresDiv" class="positioning">
                             <table id="genresTable">
                                 <tbody id="genresTbody">
+                                    <tr th:each="LocCode : ${LocCodeList}">
+                                        <td th:text="${LocCode.codeDesc}"></td>
+                                    </tr>
+
                                 </tbody>
                             </table>
-                            <div class="checkMessages" id="chkGenres" style="color:red;">
-                                <p></p>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
             </div>
-            -->
-            <!-- div two end -->
 
         </div>
-        <button class="button" id="addBtn" type="button" style="text-align: center;">회원 가입</button>
+             <button class="button" id="addBtn" type="button" style="text-align: center;">회원 가입</button>
         </div>
     </div>
 </form>

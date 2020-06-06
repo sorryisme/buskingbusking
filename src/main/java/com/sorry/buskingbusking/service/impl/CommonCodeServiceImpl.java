@@ -18,4 +18,11 @@ public class CommonCodeServiceImpl implements CommonCodeService {
     public List<CommonCode> getCodeList() {
         return commonCodeRepository.findAll();
     }
+
+
+
+    @Override
+    public List<CommonCode> findByCodeName(String codeName) {
+        return commonCodeRepository.findByCodeName(codeName);
+    }
 }

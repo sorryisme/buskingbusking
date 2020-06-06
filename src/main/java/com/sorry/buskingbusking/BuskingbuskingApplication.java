@@ -16,8 +16,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 
 
@@ -36,7 +41,7 @@ public class BuskingbuskingApplication {
 							memberRepository.save(
 								Member.builder()
 										.email("wivipp"+index+"@naver.com")
-										.nickName("nick_"+index)
+											.nickName("nick_"+index)
 										.mobile("010714671"+index)
 										.delYn("N")
 										.regDt(LocalDateTime.now())
@@ -119,6 +124,52 @@ public class BuskingbuskingApplication {
 								.build()
 				);
 			}); //for each 종료
+		};
+	}
+
+	@Bean
+	public CommandLineRunner createCode(CommonCodeRepository commonCodeRepository) throws Exception{
+		return (args)->{
+				/*CommonCode LocCode = CommonCode.builder()
+												.codeName("locCODE")
+												.codeDesc("관심지역코드")
+												.regDt(LocalDateTime.now())
+												.updDt(LocalDateTime.now())
+												.build();
+
+				CommonCode genreCode = CommonCode.builder()
+												.codeName("genreCODE")
+												.codeDesc("관심장르코드")
+												.regDt(LocalDateTime.now())
+												.updDt(LocalDateTime.now())
+												.build();
+
+				commonCodeRepository.save(LocCode);
+				commonCodeRepository.save(genreCode);
+
+*/
+				String[] locArray = {"홍대","건대","대학로","신촌","한강공원"};
+				List<String> locList = new ArrayList<>(Arrays.asList(locArray));
+
+				locList.stream().forEach(arr->{
+					CommonCode code = CommonCode.builder().codeName("LocCode")
+															.codeDesc(arr)
+															.regDt(LocalDateTime.now())
+															.build();
+					commonCodeRepository.save(code);
+
+				});
+
+				String[] genreArray = {"노래","랩","춤","마술","행위예술","피아노"};
+				List<String> genreList = new ArrayList<>(Arrays.asList(genreArray));
+				genreList.stream().forEach(arr->{
+					CommonCode code = CommonCode.builder().codeName("GenreCode")
+														.codeDesc(arr)
+														.regDt(LocalDateTime.now())
+														.build();
+					commonCodeRepository.save(code);
+				});
+
 		};
 	}
 

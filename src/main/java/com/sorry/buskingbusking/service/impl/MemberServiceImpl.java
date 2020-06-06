@@ -28,4 +28,17 @@ public class MemberServiceImpl implements MemberService {
         Member saveMember = memberRepository.save(memberDTO.toEntity());
         return saveMember.getId();
     }
+
+    @Override
+    public Long updateMember(MemberDTO memberDTO) throws Exception {
+        Member savedMember = memberRepository.getOne(memberDTO.getId());
+        savedMember.updateMember(memberDTO.toEntity());
+        return savedMember.getId();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Member findMemberById(Long id) throws Exception {
+        return memberRepository.getOne(id);
+    }
 }

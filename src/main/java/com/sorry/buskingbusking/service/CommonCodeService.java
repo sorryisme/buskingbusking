@@ -7,4 +7,6 @@ import java.util.List;
 public interface CommonCodeService {
 
     List<CommonCode> getCodeList();
+
+    List<CommonCode> findByCodeName(String codeName);
 }

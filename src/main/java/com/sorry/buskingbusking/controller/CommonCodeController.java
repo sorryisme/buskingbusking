@@ -23,4 +23,5 @@ public class CommonCodeController {
         model.addAttribute("codeList", codeList);
         return "/admin/code/codeList";
     }
+
 }

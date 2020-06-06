@@ -10,4 +10,8 @@ public interface MemberService {
     List<Member> getMemberList();
 
     Long saveMember(MemberDTO memberDTO) throws Exception;
+
+    Long updateMember(MemberDTO memberDTO) throws Exception;
+
+    Member findMemberById(Long id) throws Exception;
 }
