@@ -114,6 +114,9 @@
                         <div id="areasDiv" class="positioning">
                             <table id="areasTable">
                                 <tbody id="areasTbody">
+                                    <tr>
+                                        <td th:each="locCode : ${LocCodeList}" th:text="${locCode.codeDesc}"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                           </div>
@@ -126,10 +129,9 @@
                         <div id="genresDiv" class="positioning">
                             <table id="genresTable">
                                 <tbody id="genresTbody">
-                                    <tr th:each="LocCode : ${LocCodeList}">
-                                        <td th:text="${LocCode.codeDesc}"></td>
+                                    <tr >
+                                        <td th:each="genreCode : ${GenreCodeList}" th:text="${genreCode.codeDesc}"></td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>

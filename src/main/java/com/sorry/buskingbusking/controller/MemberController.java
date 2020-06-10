@@ -30,7 +30,7 @@ public class MemberController {
     @GetMapping("/member/signUp")
     public String movePageSignUp(Model model){
         model.addAttribute("LocCodeList", commonCodeService.findByCodeName("LocCode"));
-        model.addAttribute("GenreCode", commonCodeService.findByCodeName("GenreCode"));
+        model.addAttribute("GenreCodeList", commonCodeService.findByCodeName("GenreCode"));
         return "/member/signUp";
     }
 

@@ -130,24 +130,7 @@ public class BuskingbuskingApplication {
 	@Bean
 	public CommandLineRunner createCode(CommonCodeRepository commonCodeRepository) throws Exception{
 		return (args)->{
-				/*CommonCode LocCode = CommonCode.builder()
-												.codeName("locCODE")
-												.codeDesc("관심지역코드")
-												.regDt(LocalDateTime.now())
-												.updDt(LocalDateTime.now())
-												.build();
 
-				CommonCode genreCode = CommonCode.builder()
-												.codeName("genreCODE")
-												.codeDesc("관심장르코드")
-												.regDt(LocalDateTime.now())
-												.updDt(LocalDateTime.now())
-												.build();
-
-				commonCodeRepository.save(LocCode);
-				commonCodeRepository.save(genreCode);
-
-*/
 				String[] locArray = {"홍대","건대","대학로","신촌","한강공원"};
 				List<String> locList = new ArrayList<>(Arrays.asList(locArray));
 
@@ -162,6 +145,7 @@ public class BuskingbuskingApplication {
 
 				String[] genreArray = {"노래","랩","춤","마술","행위예술","피아노"};
 				List<String> genreList = new ArrayList<>(Arrays.asList(genreArray));
+
 				genreList.stream().forEach(arr->{
 					CommonCode code = CommonCode.builder().codeName("GenreCode")
 														.codeDesc(arr)
