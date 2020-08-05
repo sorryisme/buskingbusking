@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<link rel='stylesheet' href='/css/auth/loginForm.css'>
+<link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
+<body>
+
+
+<div class='container'>
+    <div class="left-inner">
+        <div class="text">
+            <h1>Welcome to Busking Busking</h1>
+            <span>길거리 공연문화를 선도하는 버스킹버스킹 홈페이지입니다.<br>
+        다양한 장르의 문화를 버스킹버스킹과 함께해보시겠어요?
+        </span>
+        </div>
+        <form>
+            <div class="input">
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="이메일을 입력해주세요">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="비밀번호을 입력해주세요">
+                </div>
+            </div>
+
+            <div class="button">
+                <div class="form-group">
+                    <input type="checkbox" class="form-check-input" id="saveEmail" name="saveEmail">
+                    <label class="form-check-label" for="saveEmail">이메일저장</label>
+                    <!--<a href="">비밀번호찾기</a>-->
+
+                    <div class="button-inner">
+                        <button id='loginBtn' type="button" class="btn btn-dark">로그인</button>
+                        <button id='joinBtn' type="button" class="btn btn-dark">회원가입</button>
+                        <!--<fb:login-button class="fb-button" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>-->
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="right-inner">
+        <div class="cover">
+            <div class="cover-text">
+                <h1>Busking Busking</h1>
+                <img src="/image/index-image/play-button-white.png">
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/member/memberForm.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,185 @@
+@charset "utf-8";
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+*{margin:0;padding:0;}
+a { text-decoration: none; color: #222;}
+body {
+    background-color: #fff;
+    font-family: 'Nanum Gothic', 'Roboto';
+    color: #222;
+    font-size: 11px;
+}
+
+
+/* default */
+.container{
+    width:1200px;
+    height:1000px;
+    margin:auto;
+    padding: 200px 0 0 0;
+    position:relative;
+
+}
+/*왼쪽 로그인 폼 시작*/
+.left-inner{
+    width: 50% ;
+    height: 600px;
+    float:left;
+    padding-top: 50px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 3px #aaaaaa;
+    position: relative
+
+}
+.text {
+    width:300px;
+    margin:auto;
+    font-family: 'Roboto';
+}
+.text span{
+    font-size: 11px;
+    color:dodgerblue;
+}
+.input {
+    width: 300px;
+    margin:auto;
+    padding: 10px;
+}
+.button{
+    width: 300px;
+    margin:auto;
+    padding-left:30px;
+}
+.button label{
+    padding-top: 5px;
+}
+
+.button a{
+    margin-left: 130px;
+}
+.button-inner{
+    position: absolute;
+    padding:10px;
+    text-align: right;
+    bottom : 0;
+    right:130px;
+
+}
+
+.fb-button{
+    height:150px;
+}
+
+/* 오른쪽 커버 사진 시작*/
+.cover{
+    width: 50%;
+    height: 600px;
+    overflow: hidden;
+    background-image: url(/image/index-image/login.jpg);
+    background-size: cover;
+    opacity: 0.9;
+    box-shadow: 5px 5px 3px #aaaaaa;
+}
+.cover-text{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+}
+.cover-text{
+    padding: 30px;
+}
+.cover-text h1{
+    font-size: 18px;
+    text-align: center;
+    color:white;
+}
+.cover-text img{
+    display: block;
+    width:80px;
+    height: 80px;
+    margin: auto;
+}
+
+/* footer css */
+footer {
+    position:absolute;
+    bottom: 0;
+    display:inline-block;
+    background-color: #191919;
+    color: gray;
+    width:100%;
+    padding: 60px;
+
+}
+.footer-box {
+    width: 800px;
+    hegiht:200px;
+    margin: auto;
+}
+.branch-link {
+    float: left;
+}
+.branch-link a {
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 30px;
+}
+.branch-link a:hover {
+    color: gray;
+}
+.link-sns {
+    overflow: hidden;
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+}
+.sns {
+    float: right;
+}
+.sns a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: dimgray;
+    border-radius: 50%;
+    font-size: 14px;
+    margin: 0 5px;
+}
+.sns a:hover {
+    background-color: lightgray;
+}
+.sns i {
+    padding-top: 3px;
+}
+.copyright {
+    margin-top: 10px;
+}
+.copyright div:nth-child(1) {
+    float: left;
+    margin-top: 10px;
+}
+.copyright div:nth-child(2) {
+    float: right;
+    margin-top: 10px;
+}
+.copyright div:nth-child(1) a {
+    color: #fff
+}
+.copyright div:nth-child(2) a {
+    color: gray;
+    font-size: 11px;
+    display: inline-block;
+    margin: 0 5px;
+
+}
+.copyright div:nth-child(2) a:hover {
+    color: #fff;
+}
