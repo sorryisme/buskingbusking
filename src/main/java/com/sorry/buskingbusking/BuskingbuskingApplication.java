@@ -1,9 +1,9 @@
 package com.sorry.buskingbusking;
 
-import com.sorry.buskingbusking.Repository.CommonCodeRepository;
-import com.sorry.buskingbusking.Repository.MemberRepository;
-import com.sorry.buskingbusking.Repository.NoticeRepository;
-import com.sorry.buskingbusking.Repository.PerformanceRepository;
+import com.sorry.buskingbusking.repository.CommonCodeRepository;
+import com.sorry.buskingbusking.repository.MemberRepository;
+import com.sorry.buskingbusking.repository.NoticeRepository;
+import com.sorry.buskingbusking.repository.PerformanceRepository;
 import com.sorry.buskingbusking.domain.CommonCode;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
@@ -12,16 +12,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -53,7 +47,7 @@ public class BuskingbuskingApplication {
 	}
 
 
-//	@Bean
+	@Bean
 	public CommandLineRunner runner2(NoticeRepository noticeRepository,MemberRepository memberRepository) throws Exception{
 		return (args)->{
 			Member writer = Member.builder()

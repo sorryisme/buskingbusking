@@ -1,6 +1,6 @@
 package com.sorry.buskingbusking.service.impl;
 
-import com.sorry.buskingbusking.Repository.PerformanceRequestRepository;
+import com.sorry.buskingbusking.repository.PerformanceRequestRepository;
 import com.sorry.buskingbusking.domain.PerformanceRequest;
 import com.sorry.buskingbusking.service.PerformanceRequestService;
 import lombok.AllArgsConstructor;

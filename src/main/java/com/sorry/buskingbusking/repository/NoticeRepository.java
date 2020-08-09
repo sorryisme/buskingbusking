@@ -1,4 +1,4 @@
-package com.sorry.buskingbusking.Repository;
+package com.sorry.buskingbusking.repository;
 
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;

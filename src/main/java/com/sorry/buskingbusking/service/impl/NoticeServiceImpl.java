@@ -1,8 +1,8 @@
 package com.sorry.buskingbusking.service.impl;
 
 
-import com.sorry.buskingbusking.Repository.MemberRepository;
-import com.sorry.buskingbusking.Repository.NoticeRepository;
+import com.sorry.buskingbusking.repository.MemberRepository;
+import com.sorry.buskingbusking.repository.NoticeRepository;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.dto.NoticeDTO;

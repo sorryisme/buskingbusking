@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.repository;
 
-import com.sorry.buskingbusking.Repository.NoticeRepository;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
 import org.junit.Before;
@@ -13,9 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;

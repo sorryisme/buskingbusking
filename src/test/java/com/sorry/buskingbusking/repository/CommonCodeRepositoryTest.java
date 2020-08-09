@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.repository;
 
-import com.sorry.buskingbusking.Repository.CommonCodeRepository;
 import com.sorry.buskingbusking.domain.CommonCode;
 import org.junit.Test;
 import org.junit.runner.RunWith;

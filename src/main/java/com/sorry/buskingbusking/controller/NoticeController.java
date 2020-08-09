@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.controller;
 
-import com.sorry.buskingbusking.Repository.NoticeRepository;
 import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.dto.NoticeDTO;
 import com.sorry.buskingbusking.service.NoticeService;

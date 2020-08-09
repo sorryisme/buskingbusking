@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.repository;
 
-import com.sorry.buskingbusking.Repository.CommonFileRepository;
 import com.sorry.buskingbusking.domain.CommonFile;
 import com.sorry.buskingbusking.setting.FileSetting;
 import org.junit.Before;

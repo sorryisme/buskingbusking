@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.repository;
 
-import com.sorry.buskingbusking.Repository.PerformanceRepository;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Performance;
 import org.junit.Before;

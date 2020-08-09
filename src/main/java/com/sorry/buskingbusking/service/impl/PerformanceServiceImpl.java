@@ -1,7 +1,7 @@
 package com.sorry.buskingbusking.service.impl;
 
-import com.sorry.buskingbusking.Repository.CommonFileRepository;
-import com.sorry.buskingbusking.Repository.PerformanceRepository;
+import com.sorry.buskingbusking.repository.CommonFileRepository;
+import com.sorry.buskingbusking.repository.PerformanceRepository;
 import com.sorry.buskingbusking.domain.CommonFile;
 import com.sorry.buskingbusking.domain.Performance;
 import com.sorry.buskingbusking.domain.dto.PerformanceDTO;

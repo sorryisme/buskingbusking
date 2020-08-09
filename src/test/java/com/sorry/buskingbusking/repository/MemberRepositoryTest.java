@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.repository;
 
-import com.sorry.buskingbusking.Repository.MemberRepository;
 import com.sorry.buskingbusking.domain.Address;
 import com.sorry.buskingbusking.domain.CommonFile;
 import com.sorry.buskingbusking.domain.Member;

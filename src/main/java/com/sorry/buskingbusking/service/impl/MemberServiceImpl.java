@@ -1,6 +1,6 @@
 package com.sorry.buskingbusking.service.impl;
 
-import com.sorry.buskingbusking.Repository.MemberRepository;
+import com.sorry.buskingbusking.repository.MemberRepository;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.dto.MemberDTO;
 import com.sorry.buskingbusking.service.MemberService;
@@ -40,5 +40,14 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(readOnly = true)
     public Member findMemberById(Long id) throws Exception {
         return memberRepository.getOne(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Member findMemberByIdAndPwd(MemberDTO memberDTO) throws Exception {
+        String email = memberDTO.getEmail();
+        String pwd = memberDTO.getPassword();
+
+        return memberRepository.findMemberByEmailAndPassword(email,pwd);
     }
 }

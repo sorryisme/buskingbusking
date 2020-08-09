@@ -1,6 +1,6 @@
 package com.sorry.buskingbusking.service.impl;
 
-import com.sorry.buskingbusking.Repository.CommonCodeRepository;
+import com.sorry.buskingbusking.repository.CommonCodeRepository;
 import com.sorry.buskingbusking.domain.CommonCode;
 import com.sorry.buskingbusking.service.CommonCodeService;
 import lombok.AllArgsConstructor;

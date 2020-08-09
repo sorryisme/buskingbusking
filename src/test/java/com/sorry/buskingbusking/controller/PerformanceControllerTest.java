@@ -1,6 +1,6 @@
 package com.sorry.buskingbusking.controller;
 
-import com.sorry.buskingbusking.Repository.PerformanceRepository;
+import com.sorry.buskingbusking.repository.PerformanceRepository;
 import com.sorry.buskingbusking.domain.Member;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PerformanceController.class)
