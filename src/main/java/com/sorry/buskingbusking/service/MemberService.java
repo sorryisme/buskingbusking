@@ -15,6 +15,6 @@ public interface MemberService {
 
     Member findMemberById(Long id) throws Exception;
 
-    Member findMemberByIdAndPwd(MemberDTO memberDTO) throws Exception;
+    MemberDTO findMemberByIdAndPwd(MemberDTO memberDTO) throws Exception;
 
 }

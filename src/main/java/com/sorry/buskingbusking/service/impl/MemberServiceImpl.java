@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -44,10 +45,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional(readOnly = true)
-    public Member findMemberByIdAndPwd(MemberDTO memberDTO) throws Exception {
+    public MemberDTO findMemberByIdAndPwd(MemberDTO memberDTO) throws Exception {
         String email = memberDTO.getEmail();
         String pwd = memberDTO.getPassword();
+        Optional<Member> optMember = memberRepository.findMemberByEmailAndPassword(email,pwd);
 
-        return memberRepository.findMemberByEmailAndPassword(email,pwd);
+        return optMember.map(Member::toDTO).orElseGet(MemberDTO::new);
     }
 }

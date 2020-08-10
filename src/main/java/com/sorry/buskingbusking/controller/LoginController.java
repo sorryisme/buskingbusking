@@ -32,8 +32,8 @@ public class LoginController {
 
     @PostMapping("/auth/login")
     public String login(MemberDTO memberDTO, HttpSession session, Model model) throws Exception{
-        Member loginMember = memberService.findMemberByIdAndPwd(memberDTO);
-        log.info(loginMember.getEmail());
+        MemberDTO loginMember = memberService.findMemberByIdAndPwd(memberDTO);
+        session.setAttribute("login", loginMember);
 
         return "index";
     }
