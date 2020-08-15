@@ -10,7 +10,6 @@ const LoginForm = function(){
     //함수 선언부
     function LoginFormEvent(){
         $("#loginBtn").click(function(){
-            alert('test');
             $("#loginForm").submit();
         });
     }
