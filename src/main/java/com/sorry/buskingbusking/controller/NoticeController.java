@@ -5,6 +5,9 @@ import com.sorry.buskingbusking.domain.dto.NoticeDTO;
 import com.sorry.buskingbusking.service.NoticeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +24,10 @@ public class NoticeController {
     private final NoticeService noticeService;
 
     @GetMapping("/notice/list")
-    public String movePageNoticeList(Model model){
-        List<Notice> noticeList = noticeService.getNoticeListAll();
+    public String movePageNoticeList(@PageableDefault Pageable pageable, Model model){
+        Page<Notice> noticeList = noticeService.getNoticeListAll(pageable);
+
+
         model.addAttribute("noticeList", noticeList);
         return "/notice/noticeList";
     }

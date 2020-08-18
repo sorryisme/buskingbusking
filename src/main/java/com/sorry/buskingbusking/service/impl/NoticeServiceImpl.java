@@ -8,6 +8,9 @@ import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.dto.NoticeDTO;
 import com.sorry.buskingbusking.service.NoticeService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +27,12 @@ public class NoticeServiceImpl implements NoticeService {
     private final MemberRepository memberRepository;
     @Override
     @Transactional(readOnly = true)
-    public List<Notice> getNoticeListAll() {
-        return noticeRepository.findAll();
+    public Page<Notice> getNoticeListAll(Pageable pageable) {
+
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
+        pageable = PageRequest.of(page, 10);
+
+        return noticeRepository.findAll(pageable);
     }
 
     @Override

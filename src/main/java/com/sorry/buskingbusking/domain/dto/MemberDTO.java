@@ -4,6 +4,7 @@ import com.sorry.buskingbusking.domain.CommonFile;
 import com.sorry.buskingbusking.domain.Member;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -18,15 +19,15 @@ public class MemberDTO {
 
     private Long id;
 
-    @NotEmpty(message = "email은 입력되어야합니다.")
+    @NotBlank(message = "email은 입력되어야합니다.")
     private String email;
 
     private CommonFile profile;
 
-    @NotEmpty(message ="비밀번호는 입력되어야합니다.")
+    @NotBlank(message ="비밀번호는 입력되어야합니다.")
     private String password;
 
-    @NotEmpty(message ="닉네임은 입력되어야합니다.")
+    @NotBlank(message ="닉네임은 입력되어야합니다.")
     @Length(max = 30, message = "닉네임은 입력되어야합니다.")
     private String nickName;
 

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,7 @@ public class MemberController {
     }
 
     @PostMapping("/member/saveMember")
-    public String saveMember(@RequestParam(name ="file") MultipartFile file, MemberDTO memberDTO) throws Exception{
+    public String saveMember(@RequestParam(name ="file") MultipartFile file, @Valid MemberDTO memberDTO) throws Exception{
         Long id = memberService.saveMember(memberDTO);
         log.info("{}",id);
         return "/member/signUp";
