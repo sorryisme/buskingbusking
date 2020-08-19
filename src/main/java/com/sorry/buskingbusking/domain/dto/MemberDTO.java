@@ -6,8 +6,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Setter
@@ -19,16 +19,16 @@ public class MemberDTO {
 
     private Long id;
 
-    @NotBlank(message = "email은 입력되어야합니다.")
+    @NotEmpty(message = "email은 입력되어야합니다.")
     private String email;
 
     private CommonFile profile;
 
-    @NotBlank(message ="비밀번호는 입력되어야합니다.")
+    @NotEmpty(message ="비밀번호는 입력되어야합니다.")
     private String password;
 
-    @NotBlank(message ="닉네임은 입력되어야합니다.")
-    @Length(max = 30, message = "닉네임은 입력되어야합니다.")
+    @NotEmpty(message ="닉네임은 입력되어야합니다.")
+    @Length(max = 30, message = "닉네임은 30자 이내여야합니다.")
     private String nickName;
 
     private String mobile;

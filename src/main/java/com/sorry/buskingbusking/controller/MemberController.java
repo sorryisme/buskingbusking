@@ -8,8 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,12 +30,6 @@ public class MemberController {
     private final CommonCodeService commonCodeService;
 
 
-    @GetMapping("/member/signUp")
-    public String movePageSignUp(Model model){
-        model.addAttribute("LocCodeList", commonCodeService.findByCodeName("LocCode"));
-        model.addAttribute("GenreCodeList", commonCodeService.findByCodeName("GenreCode"));
-        return "/member/signUp";
-    }
 
     @GetMapping("/admin/member/getList")
     public String memberGetList(Model model){
@@ -46,8 +42,19 @@ public class MemberController {
         return "/admin/member/memberList";
     }
 
-    @PostMapping("/member/saveMember")
-    public String saveMember(@RequestParam(name ="file") MultipartFile file, @Valid MemberDTO memberDTO) throws Exception{
+    @GetMapping("/member/signUp")
+    public String movePageSignUp(Model model, MemberDTO memberDTO){
+        model.addAttribute("LocCodeList", commonCodeService.findByCodeName("LocCode"));
+        model.addAttribute("GenreCodeList", commonCodeService.findByCodeName("GenreCode"));
+        return "/member/signUp";
+    }
+
+    @PostMapping("/member/signUp")
+    public String saveMember(@RequestParam(name ="file") MultipartFile file, @Valid MemberDTO memberDTO, BindingResult bindingResult) throws Exception{
+        if(bindingResult.hasErrors()){
+            return "/member/signUp";
+        }
+
         Long id = memberService.saveMember(memberDTO);
         log.info("{}",id);
         return "/member/signUp";

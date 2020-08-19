@@ -12,8 +12,8 @@
 <header th:replace="/fragments/header"></header>
 
 
-<form id='formData' action="/member/saveMember" method="post" enctype="multipart/form-data">
-
+<!--<form id='formData' action="/member/saveMember" method="post" enctype="multipart/form-data">-->
+ <form id='formData' th:action="@{/member/signUp}" th:object="${memberDTO}" method="post" enctype="multipart/form-data">
     <div id="mainDiv" class="mainDiv">
         <div class="title">
             <span id="registration" class="registration">Registration</span>
@@ -34,24 +34,24 @@
                 </div>
 
                 <div id="personalInfoDiv" class="personalInfoDiv">
-                    <div class="PersonalPositioning">
-                        <div id="emailDiv" class="emailDiv">
-                            <h4>개인 정보 입력</h4>
-                            <label class="icon" for="email"><i class="icon-envelope"></i></label>
-                            <input type="email" id='email' name="email" placeholder="example@email.com" required/>
-                                <p></p>
+                        <div class="PersonalPositioning">
+                            <div id="emailDiv" class="emailDiv">
+                                <h4>개인 정보 입력</h4>
+                                <label class="icon" for="email"><i class="icon-envelope"></i></label>
+                                <input type="email" id='email' name="email" placeholder="example@email.com"/>
                             </div>
+                            <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
                         </div>
 
                         <div id="nickNameDiv">
                             <label class="icon" for="nickName"><i class="icon-user"></i></label>
                             <input type="text" id="nickName" name="nickName" placeholder="닉네임" required/>
-                            <!--<td class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>-->
+                            <td class="err" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">nickName Error</td>
                         </div>
 
                         <div id="passwordDiv">
                             <label class="icon" for="password"><i class="icon-shield"></i></label>
-                            <input type="password" id="password" name="password" placeholder="비밀번호" required/>
+                            <input type="password" id="password" name="password" placeholder="비밀번호"/>
                             <div class="checkMessages">
                             </div>
                         </div>
