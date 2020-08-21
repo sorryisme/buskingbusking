@@ -27,6 +27,9 @@ public class NoticeController {
     public String movePageNoticeList(@PageableDefault Pageable pageable, Model model){
         Page<Notice> noticeList = noticeService.getNoticeListAll(pageable);
 
+        log.info("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
+                noticeList.getTotalElements(), noticeList.getTotalPages(), noticeList.getSize(),
+                noticeList.getNumber(), noticeList.getNumberOfElements());
 
         model.addAttribute("noticeList", noticeList);
         return "/notice/noticeList";
