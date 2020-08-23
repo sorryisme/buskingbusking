@@ -1,12 +1,19 @@
 package com.sorry.buskingbusking.domain;
 
+import com.sorry.buskingbusking.util.ContextUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.naming.Context;
 import javax.persistence.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Entity
 @Getter
@@ -44,8 +51,32 @@ public class Notice {
     }
 
     public void addViewCnt(){
+
+        if(hasCookie()){
+           return;
+        }
+
         this.viewCnt++;
+        addCookieNoticeSeq();
     }
+
+    private Boolean hasCookie(){
+        HttpServletRequest request = ContextUtil.getRequest();
+        Cookie[] cookies = request.getCookies();
+
+        Stream<Cookie> cookieStream = Arrays.stream(cookies);
+
+        return cookieStream.anyMatch(cookie -> {
+            return cookie.getName().equals("notice"+this.id);
+        });
+    }
+
+    private void addCookieNoticeSeq(){
+        HttpServletResponse response = ContextUtil.getResponse();
+        Cookie noticeCookie = new Cookie("notice"+this.id,  String.valueOf(this.id));
+        response.addCookie(noticeCookie);
+    }
+
 
 
 }

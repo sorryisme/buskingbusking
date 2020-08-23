@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -36,7 +37,7 @@ public class NoticeController {
     }
 
     @GetMapping("/notice/view/{id}")
-    public String movePageNoticeView(@PathVariable Long id, Model model){
+    public String movePageNoticeView( HttpServletRequest request, @PathVariable Long id, Model model){
         log.info("** id = {}", id);
         Notice notice = noticeService.findNoticeById(id);
         model.addAttribute("notice", notice);
