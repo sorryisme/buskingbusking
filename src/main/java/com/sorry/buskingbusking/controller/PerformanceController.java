@@ -1,6 +1,5 @@
 package com.sorry.buskingbusking.controller;
 
-import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.Performance;
 import com.sorry.buskingbusking.domain.dto.PerformanceDTO;
 import com.sorry.buskingbusking.service.PerformanceService;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
 
 @Controller
 @Slf4j

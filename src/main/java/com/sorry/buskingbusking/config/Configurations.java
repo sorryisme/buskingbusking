@@ -27,5 +27,4 @@ public class Configurations implements WebMvcConfigurer {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 
-
 }

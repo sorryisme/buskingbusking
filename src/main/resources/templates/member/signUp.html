@@ -35,12 +35,12 @@
 
                 <div id="personalInfoDiv" class="personalInfoDiv">
                         <div class="PersonalPositioning">
-                            <div id="emailDiv" class="emailDiv">
-                                <h4>개인 정보 입력</h4>
-                                <label class="icon" for="email"><i class="icon-envelope"></i></label>
-                                <input type="email" id='email' name="email" placeholder="example@email.com"/>
-                            </div>
-                            <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
+                                <div id="emailDiv" class="emailDiv">
+                                    <h4>개인 정보 입력</h4>
+                                    <label class="icon" for="email"><i class="icon-envelope"></i></label>
+                                    <input type="email" id='email' name="email" placeholder="example@email.com"/>
+                                </div>
+                                <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
                         </div>
 
                         <div id="nickNameDiv">
