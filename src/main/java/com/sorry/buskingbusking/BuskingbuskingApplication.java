@@ -47,7 +47,7 @@ public class BuskingbuskingApplication {
 	}
 
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner2(NoticeRepository noticeRepository,MemberRepository memberRepository) throws Exception{
 		return (args)->{
 			Member writer = Member.builder()
