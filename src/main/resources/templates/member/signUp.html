@@ -40,20 +40,19 @@
                                     <label class="icon" for="email"><i class="icon-envelope"></i></label>
                                     <input type="email" id='email' name="email" placeholder="example@email.com"/>
                                 </div>
-                                <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
+                                <div class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</div>
                         </div>
 
                         <div id="nickNameDiv">
                             <label class="icon" for="nickName"><i class="icon-user"></i></label>
                             <input type="text" id="nickName" name="nickName" placeholder="닉네임" required/>
-                            <td class="err" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">nickName Error</td>
+                            <div class="err" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">nickName Error</div>
                         </div>
 
                         <div id="passwordDiv">
                             <label class="icon" for="password"><i class="icon-shield"></i></label>
                             <input type="password" id="password" name="password" placeholder="비밀번호"/>
-                            <div class="checkMessages">
-                            </div>
+                            <div class="checkMessages"></div>
                         </div>
 
                         <div id="pwConfirmDiv">
@@ -113,37 +112,26 @@
                         <label for='interestAreas' id="interestAreas">관심 지역</label>
 
                         <div id="areasDiv" class="positioning">
-                            <table id="areasTable">
-                                <tbody id="areasTbody">
-                                    <tr>
-                                        <td th:each="locCode : ${LocCodeList}" th:text="${locCode.codeDesc}"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                          </div>
+                            <span th:each="locCode : ${LocCodeList}">
+                                <input type="radio" th:value="${locCode.id}">
+                                <label class="radioLable" th:text="${locCode.codeDesc}"></label>
+                            </span>
+                        </div>
                     </div>
-
 
                     <div id="interestgenresDiv">
                         <label for='interestgenres' id='interestgenres'>관심 장르</label>
 
                         <div id="genresDiv" class="positioning">
-                            <table id="genresTable">
-                                <tbody id="genresTbody">
-                                    <tr >
-                                        <td th:each="genreCode : ${GenreCodeList}" th:text="${genreCode.codeDesc}"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <span th:each="genreCode : ${GenreCodeList}">
+                                <input type="radio" th:value="${genreCode.id}" >
+                                <label class="radioLable" th:text="${genreCode.codeDesc}"></label>
+                            </span>
                         </div>
                     </div>
-                </div>
-
+                </div> <!-- interest end-->
+                    <button class="button" id="addBtn" type="button" style="text-align: center;">회원 가입</button>
             </div>
-
-        </div>
-             <button class="button" id="addBtn" type="button" style="text-align: center;">회원 가입</button>
-        </div>
     </div>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.naming.Context;
 import javax.persistence.*;
@@ -18,7 +19,7 @@ import java.util.stream.Stream;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Notice {
+public class Notice extends AuditingEntity {
 
     @Id
     @Column(name = "notice_id")
@@ -29,7 +30,7 @@ public class Notice {
 
     private String noticeContents;
 
-    private Integer viewCnt;
+    private Integer viewCnt = 0;
 
     private LocalDateTime regDt;
 

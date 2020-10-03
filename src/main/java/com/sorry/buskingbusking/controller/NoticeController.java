@@ -52,7 +52,6 @@ public class NoticeController {
 
     @PostMapping("/notice/insert")
     public String insertNotice(NoticeDTO noticeDto){
-
         Long id = noticeService.insertNotice(noticeDto);
         return "redirect:/notice/list";
     }

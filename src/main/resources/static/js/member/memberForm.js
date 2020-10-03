@@ -4,14 +4,38 @@ const MemberForm = function(){
 
     return {
         init : function(){
-            MemberFormEvent();
+            memberFormInit();
+            memberFormEvent();
         }
     };
     //함수 선언부
-    function MemberFormEvent(){
-        $("#addBtn").click(function(){
+
+    function memberFormInit() {
+        $("#InterestInfoDiv").hide();
+    }
+
+    function memberFormEvent(){
+        $("#addBtn").click(function () {
             $("#formData").submit();
         });
+
+        $("#type1").click(function () {
+            $("#InterestInfoDiv").hide();
+            $(".mainDiv").css("height", "1024px");
+        });
+
+        $("#type2").click(function () {
+            $("#InterestInfoDiv").show();
+            $(".mainDiv").css("height", "1240px");
+        })
+
+        $("#msgY").click(function () {
+            $("#messageIdDiv").show();
+        })
+
+        $("#msgN").click(function () {
+            $("#messageIdDiv").hide();
+        })
     }
 
 

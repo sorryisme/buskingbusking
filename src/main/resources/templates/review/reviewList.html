@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공연정보</title>
+    <link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/common/common.css'>
+</head>
+<body>
+<header th:replace="/fragments/header"></header>
+
+<div class='container'>
+    <h3>공연 후기</h3>
+    <nav class="navbar navbar-light justify-content-between blackLine" style="margin-bottom: -4px;">
+        <a href='form.html' class='btn btn-primary btn-sm'>추가</a>
+        <form class="form-inline">
+            <input id="words" name="words"
+                   class="form-control form-control-sm mr-sm-2" type="search"
+                   placeholder="검색" aria-label="Search">
+            <button id="searchBtn"
+                    class="btn btn-sm btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+    </nav>
+    <div class="list_first">
+        <div id="list">
+            <div></div>
+        </div>
+    </div>
+
+
+
+
+    <nav id="Btn" aria-label="Page navigation">
+        <ul class="pagination justify-content-center" style="margin-top:30px;">
+            <li class="page-item"><a id="prevBtn" class="page-link"
+                                     tabindex="-1">이전</a></li>
+
+            <li class="page-item"><a id="currBtn" class="page-link"
+                                     href="#">1</a></li>
+
+            <li class="page-item "><a id="nextBtn" class="page-link"
+                                      tabindex="0">다음</a></li>
+        </ul>
+    </nav>
+
+    <footer></footer>
+    <!-- </div> -->
+
+</div>
+<!-- Container 끝 -->
+</body>
+</html>

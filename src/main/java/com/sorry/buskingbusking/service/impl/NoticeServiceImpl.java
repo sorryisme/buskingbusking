@@ -47,11 +47,6 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public Long insertNotice(NoticeDTO noticeDTO) {
-        noticeDTO.setInsert();
-        //추후 삭제 예정
-        Optional<Member> writer = memberRepository.findById(1L);
-        noticeDTO.setMember(writer.get());
-        //삭제예정 끝
         Notice savedNotice = noticeRepository.save(noticeDTO.toEntity());
         return savedNotice.getId();
     }
