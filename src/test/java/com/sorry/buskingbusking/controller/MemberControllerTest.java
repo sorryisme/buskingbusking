@@ -64,7 +64,6 @@ public class MemberControllerTest {
                                 .msgYn("Y")
                                 .msgId("publicMsg")
                                 .delYn("N")
-                                .regDt(LocalDateTime.now())
                                 .build();
 
 
@@ -81,8 +80,7 @@ public class MemberControllerTest {
                     .msgYn("Y")
                     .msgId("wivipp39")
                     .delYn("N")
-                    .regDt(LocalDateTime.now())
-                    .updDt(LocalDateTime.now()).build();
+                    .build();
 
 
         given(memberService.getMemberList()).willReturn(Collections.singletonList(member));

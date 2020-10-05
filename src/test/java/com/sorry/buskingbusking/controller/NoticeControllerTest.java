@@ -37,7 +37,6 @@ public class NoticeControllerTest {
                         .nickName("writer")
                         .password("1234")
                         .delYn("N")
-                        .regDt(LocalDateTime.now())
                         .build();
     }
 

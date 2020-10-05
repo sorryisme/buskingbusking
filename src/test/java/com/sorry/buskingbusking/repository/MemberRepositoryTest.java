@@ -92,8 +92,7 @@ public class MemberRepositoryTest {
                 .msgId("wivipp39")
                 .delYn("N")
                 .address(address)
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+                .build();
 
         testEntityManager.persist(member);
         Member findMember = memberRepository.getOne(member.getId());
@@ -122,8 +121,7 @@ public class MemberRepositoryTest {
                 .msgId("wivipp39")
                 .delYn("N")
                 .address(address)
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+                .build();
 
         testEntityManager.persist(member1);
         Member member2 = Member.builder()
@@ -136,8 +134,7 @@ public class MemberRepositoryTest {
                 .msgId("wivipp39")
                 .delYn("N")
                 .address(address)
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+                .build();
 
         testEntityManager.persist(member2);
         Member member3 = Member.builder()
@@ -150,8 +147,7 @@ public class MemberRepositoryTest {
                 .msgId("apple")
                 .delYn("N")
                 .address(address)
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+                .build();
         testEntityManager.persist(member3);
 
         List<Member> memberList = memberRepository.findAll();
@@ -176,8 +172,7 @@ public class MemberRepositoryTest {
                 .msgId("wivipp39")
                 .delYn("N")
                 .address(address)
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+                .build();
 
         testEntityManager.persist(savedMember);
 
@@ -190,7 +185,6 @@ public class MemberRepositoryTest {
                 .msgId(null)
                 .address(updateAddress)
                 .delYn("N")
-                .updDt(LocalDateTime.now())
                 .build();
 
 

@@ -44,8 +44,7 @@ public class NoticeRepositoryTest {
                 .msgYn("Y")
                 .msgId("wivipp39")
                 .delYn("N")
-                .regDt(LocalDateTime.now())
-                .updDt(LocalDateTime.now()).build();
+               .build();
     }
 
     @Before
