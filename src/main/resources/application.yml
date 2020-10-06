@@ -1,10 +1,7 @@
+server:
+  port: 9999
 spring:
   datasource:
-#    url: jdbc:mariadb://192.168.219.100:3306/buskingbusking
-#    url: jdbc:h2:tcp://localhost:9092/mem:buskingbusking
-#    username: sorry
-#    password: 1111
-#    driver-class-name: org.mariadb.jdbc.Driver
       url: jdbc:h2:tcp://localhost/~/buskingbusking
       username: sa
       passowrd:
