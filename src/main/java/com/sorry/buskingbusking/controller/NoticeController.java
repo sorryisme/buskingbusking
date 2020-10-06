@@ -3,8 +3,11 @@ package com.sorry.buskingbusking.controller;
 import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.dto.NoticeDTO;
 import com.sorry.buskingbusking.service.NoticeService;
+import com.sorry.buskingbusking.util.OptionalUtil;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -13,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -51,9 +56,12 @@ public class NoticeController {
     }
 
     @PostMapping("/notice/insert")
-    public String insertNotice(NoticeDTO noticeDto){
+    public String insertNotice(NoticeDTO noticeDto, @RequestParam(required = false, name = "file") MultipartFile multipartFile) throws Exception{
+
+        OptionalUtil.addNullSafeFile(multipartFile, nullSafeFile -> noticeDto.addFile(nullSafeFile) );
 
         Long id = noticeService.insertNotice(noticeDto);
+
         return "redirect:/notice/list";
     }
 

@@ -14,10 +14,10 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Member {
+public class Member extends AuditingEntity {
 
     @Id
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -29,7 +29,7 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 30)
     private String nickName;
 
     private String mobile;
@@ -43,10 +43,6 @@ public class Member {
     @Embedded
     private Address address;
 
-    private LocalDateTime regDt;
-
-    private LocalDateTime updDt;
-
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Performance> performanceList = new ArrayList<>();
 
@@ -54,7 +50,7 @@ public class Member {
     private List<PerformanceRequest> performanceRequestList = new ArrayList<>();
 
     @Builder
-    public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, Address address , LocalDateTime regDt, LocalDateTime updDt) {
+    public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, Address address) {
         this.id = id;
         this.email = email;
         this.profile = profile;
@@ -65,8 +61,6 @@ public class Member {
         this.msgId = msgId;
         this.delYn = delYn;
         this.address = address;
-        this.regDt = regDt;
-        this.updDt = updDt;
     }
     public void updateMember(Member member){
         this.id = member.getId();
@@ -78,7 +72,6 @@ public class Member {
         this.msgId = member.getMsgId();
         this.delYn = member.getDelYn();
         this.address = member.getAddress();
-        this.updDt = LocalDateTime.now();
 
     }
     public MemberDTO toDTO(){
@@ -92,8 +85,6 @@ public class Member {
                         .msgYn(this.msgYn)
                         .msgId(this.msgId)
                         .delYn(this.delYn)
-                        .regDt(this.regDt)
-                        .updDt(this.updDt)
                         .build();
     }
 

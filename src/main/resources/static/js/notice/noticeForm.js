@@ -11,7 +11,13 @@ const NoticeForm = function(){
         $("#addBtn").click(function(){
             $("#addForm").submit();
         });
+
+        $("#listBtn").click(function(){
+           location.href="/notice/list";
+        });
     }
+
+
 
 }();
 

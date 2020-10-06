@@ -43,7 +43,6 @@ public class PerformanceDTO {
 
     private List<MultipartFile> commonFileList = new ArrayList<>();
 
-
     public void addFile(MultipartFile file){
         this.commonFileList.add(file);
     }

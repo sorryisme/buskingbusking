@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.stream.IntStream;
 
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class BuskingbuskingApplication {
 
 	public static void main(String[] args) {
@@ -38,7 +40,6 @@ public class BuskingbuskingApplication {
 											.nickName("nick_"+index)
 										.mobile("010714671"+index)
 										.delYn("N")
-										.regDt(LocalDateTime.now())
 										.password(index + "")
 										.build()
 							)
@@ -47,7 +48,7 @@ public class BuskingbuskingApplication {
 	}
 
 
-	@Bean
+	//@Bean
 	public CommandLineRunner runner2(NoticeRepository noticeRepository,MemberRepository memberRepository) throws Exception{
 		return (args)->{
 			Member writer = Member.builder()
@@ -55,7 +56,6 @@ public class BuskingbuskingApplication {
 					.nickName("nickName")
 					.mobile("01071467182")
 					.delYn("N")
-					.regDt(LocalDateTime.now())
 					.password("1234")
 					.build();
 			memberRepository.save(writer);
@@ -82,7 +82,6 @@ public class BuskingbuskingApplication {
 					.nickName("nickName")
 					.mobile("01071467182")
 					.delYn("N")
-					.regDt(LocalDateTime.now())
 					.password("1234")
 					.build();
 			memberRepository.save(writer);

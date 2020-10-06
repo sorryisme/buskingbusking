@@ -14,7 +14,7 @@ public interface NoticeService {
 
     Notice findNoticeById(Long noticeId);
 
-    Long insertNotice(NoticeDTO noticeDTO);
+    Long insertNotice(NoticeDTO noticeDTO) throws Exception;
 
 
 }

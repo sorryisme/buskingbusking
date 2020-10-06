@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class MemberDTO {
+public class MemberDTO extends AuditingDTO {
 
     private Long id;
 
@@ -39,12 +39,8 @@ public class MemberDTO {
 
     private String delYn;
 
-    private LocalDateTime regDt;
-
-    private LocalDateTime updDt;
-
     @Builder
-    public MemberDTO(Long id,String email, CommonFile profile,String password, String nickName, String mobile, String msgYn, String msgId, String delYn, LocalDateTime regDt, LocalDateTime updDt){
+    public MemberDTO(Long id,String email, CommonFile profile,String password, String nickName, String mobile, String msgYn, String msgId, String delYn){
         this.id = id;
         this.email = email;
         this.profile = profile;
@@ -54,8 +50,6 @@ public class MemberDTO {
         this.msgYn = msgYn;
         this.msgId = msgId;
         this.delYn = delYn;
-        this.regDt = regDt;
-        this.updDt = updDt;
     }
 
     public Member toEntity(){
@@ -67,8 +61,6 @@ public class MemberDTO {
                 .mobile(mobile)
                 .msgYn(msgYn)
                 .delYn(delYn)
-                .regDt(regDt)
-                .updDt(updDt)
                 .build();
     }
 }

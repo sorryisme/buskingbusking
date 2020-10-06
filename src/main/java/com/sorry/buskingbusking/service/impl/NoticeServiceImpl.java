@@ -1,6 +1,8 @@
 package com.sorry.buskingbusking.service.impl;
 
 
+import com.sorry.buskingbusking.domain.CommonFile;
+import com.sorry.buskingbusking.repository.CommonFileRepository;
 import com.sorry.buskingbusking.repository.MemberRepository;
 import com.sorry.buskingbusking.repository.NoticeRepository;
 import com.sorry.buskingbusking.domain.Member;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,6 +27,8 @@ import java.util.Optional;
 public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeRepository noticeRepository;
+
+    private final CommonFileRepository commonFileRepository;
 
     private final MemberRepository memberRepository;
     @Override
@@ -37,6 +42,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Notice findNoticeById(Long noticeId) {
         Optional<Notice> optionalNotice = noticeRepository.findById(noticeId);
         Notice findNotice = optionalNotice.get();
@@ -46,13 +52,18 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public Long insertNotice(NoticeDTO noticeDTO) {
-        noticeDTO.setInsert();
-        //추후 삭제 예정
-        Optional<Member> writer = memberRepository.findById(1L);
-        noticeDTO.setMember(writer.get());
-        //삭제예정 끝
-        Notice savedNotice = noticeRepository.save(noticeDTO.toEntity());
+    public Long insertNotice(NoticeDTO noticeDTO) throws Exception {
+        Notice notice = noticeDTO.toEntity();
+
+        List<MultipartFile> fileList = noticeDTO.getNoticeFileList();
+        for( MultipartFile file : fileList ){
+            CommonFile commonFile = new CommonFile();
+            commonFile.saveFileList(file);
+            commonFileRepository.save(commonFile);
+            notice.getFileList().add(commonFile);
+        }
+
+        Notice savedNotice = noticeRepository.save(notice);
         return savedNotice.getId();
     }
 }

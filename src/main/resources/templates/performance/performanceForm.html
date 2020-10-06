@@ -249,7 +249,6 @@
         var map = new naver.maps.Map('map', mapOptions);
 
         $("#mapSearchBtn").click(function() {
-            alert('test');
             let searchName = $("#locName").val();
 
             if(!searchName){
@@ -261,17 +260,84 @@
                 query: searchName
             }, function(status, response) {
                 if (status !== naver.maps.Service.Status.OK) {
-                    return alert('Something wrong!');
+                    return alert('조회에 실패했습니다.');
                 }
 
-                var result = response.v2, // 검색 결과의 컨테이너
-                    items = result.addresses; // 검색 결과의 배열
+                var result = response.v2,
+                    items = result.addresses;
 
-                // do Something
+                fnSetSearchResult(items);
             });
         })
 
     });
+
+    function fnSetSearchResult(items) {
+        let searchTableTbody = $('#searchTable > tbody');
+
+        items.forEach(function(item, index){
+            console.log(item);
+            let roadAddress = item.roadAddress;
+            let mapx = item.x;
+            let mapy = item.y;
+            let template = `<td><a class='addressLink' href='#' mapx='${ mapx }' mapy='${ mapy }' roadAddress='${ roadAddress } '>${ roadAddress }</a></td>`;
+
+            $('<tr>').html(template)
+                     .appendTo(searchTableTbody);
+            // $('<hr>').appendTo(searchTableTbody);
+
+        });
+    }
+
+    $('#searchTable').on('click', '.addressLink',function(event) {
+        event.preventDefault();
+        var target = event.target;
+        console.log(target);
+
+        // function initMap(x,y) {
+        //     map.set₩(new naver.maps.Point(x, y));
+        // }
+
+        // for (var marker of markerArray) {
+        //     if (marker.title == title) {
+        //         console.log('===>', marker.title);
+        //         if (prevMarker) {
+        //             prevMarker.setIcon();
+        //         }
+        //         marker.setIcon({
+        //             url:'../map-image/selectMarker.png'
+        //         });
+        //         prevMarker = marker;
+        //         break;
+        //     }
+        // }
+
+
+    });
+
+    //             searchTableTbody.html('');
+    //             markerArray = [];
+    //             initMap(response.items[0].mapx, response.items[0].mapy);
+    //             for (var item of response.items){
+    //                 var result = item.roadAddress ? item.roadAddress : item.address
+    //                 console.log(result);
+    //                 $('<tr>')
+    //                     .html("<td><a class='addressLink' href='#' mapx='" + item.mapx + "' mapy='" + item.mapy + "' roadAddress= '" + result + "'>" + item.title + "</a></td>")
+    //                     .appendTo(searchTableTbody);
+    //                 $('<tr>')
+    //                     .html("<td>" + result + "</td>")
+    //                     .appendTo(searchTableTbody);
+    //                 $('<hr>')
+    //                     .appendTo(searchTableTbody);
+    //
+    //                 marker = new naver.maps.Marker({
+    //                     position: new naver.maps.Point(item.mapx, item.mapy),
+    //                     map: map,
+    //                 });
+    //                 marker.title = item.title;
+    //                 markerArray.push(marker);
+    //                 markers.push(marker);
+    //             } // for문 */
 </script>
 
 <script type="text/javascript">
@@ -435,58 +501,6 @@
     //     }
     // }
     //
-
-
-
-    // sendBtn.click(()=>{
-    //     marker.setMap(null);
-    //     for (var i = 0; i < markers.length; i++) {
-    //         markers[i].setMap(null);
-    //     }
-    //
-    //     $.ajax('../json/request/form',{
-    //         data: {
-    //             locName : $('#location').val(),
-    //         },
-    //         /* method:'GET', */
-    //         success:(response)=>{
-    //             console.log("성공")
-    //             console.log(response);
-    //             searchTableTbody.html('');
-    //             markerArray = [];
-    //             initMap(response.items[0].mapx, response.items[0].mapy);
-    //             for (var item of response.items){
-    //                 var result = item.roadAddress ? item.roadAddress : item.address
-    //                 console.log(result);
-    //                 $('<tr>')
-    //                     .html("<td><a class='addressLink' href='#' mapx='" + item.mapx + "' mapy='" + item.mapy + "' roadAddress= '" + result + "'>" + item.title + "</a></td>")
-    //                     .appendTo(searchTableTbody);
-    //                 $('<tr>')
-    //                     .html("<td>" + result + "</td>")
-    //                     .appendTo(searchTableTbody);
-    //                 $('<hr>')
-    //                     .appendTo(searchTableTbody);
-    //
-    //                 marker = new naver.maps.Marker({
-    //                     position: new naver.maps.Point(item.mapx, item.mapy),
-    //                     map: map,
-    //                 });
-    //                 marker.title = item.title;
-    //                 markerArray.push(marker);
-    //                 markers.push(marker);
-    //             } // for문 */
-    //
-    //
-    //             for (var marker of markerArray) {
-    //                 console.log(marker.title)
-    //             }
-    //         }, //성공
-    //         error:()=>{
-    //             window.alert('실행오류');
-    //         }
-    //
-    //     }); //ajax 종료
-    // });
 
 
     // addBtn.click(() => {

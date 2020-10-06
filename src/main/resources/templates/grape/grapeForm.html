@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공연정보</title>
+    <link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/common/common.css'>
+</head>
+<body>
+<header th:replace="/fragments/header"></header>
+
+<div class="container">
+    <!-- left-nav -->
+    <div class="left-nav"></div>
+    <!-- right-nav -->
+    <div class="right-content">
+        <div class="grape-container">
+            <h1>청포도 충전</h1>
+            <div class="grape-cnt">
+                <div></div>
+                <div>청포도<span>10</span>알
+                    <h5>1,100원</h5>
+                    <button onclick="select(10)" type="button" class='btn btn-dark btn-sm'>선택</button>
+                </div>
+                <div></div>
+                <div>청포도<span>30</span>알
+                    <h5>3,300원</h5>
+                    <button onclick="select(30)" type="button" class='btn btn-dark btn-sm'>선택</button>
+                </div>
+            </div>
+            <div class="grape-cnt2">
+                <div></div>
+                <div>청포도<span>50</span>알
+                    <h5>5,500원</h5>
+                    <button onclick="select(50)" type="button" class='btn btn-dark btn-sm'>선택</button>
+                </div>
+                <div></div>
+                <div>청포도<span>100</span>알
+                    <h5>11,000원</h5>
+                    <button onclick="select(100)" id="selectBtn" type="button" class='btn btn-dark btn-sm'>선택</button>
+                </div>
+            </div>
+        </div>
+
+        <form class="clear-fix">
+            <div class='form-group row'>
+                <label for='chrCount' class='form-label'>충전갯수</label>
+                <div class='form-group col'>
+                    <input type="text" class='form-control' id='chrCount' name='chrCount'>
+                </div>
+                <label for='chrAmount' class='form-label'>충전금액</label>
+                <div class='form-group col'>
+                    <input class='form-control' readonly id='chrAmount' type='text'
+                           name='chrAmount' >
+                </div>
+                <label for='chrMethod' class='form-label'>충전수단</label>
+                <div class='col'>
+                    <select class="custom-select" id="chrMethod" name='chrMethod'>
+                        <option selected>결제수단</option>
+                        <option value="신용카드">신용카드</option>
+                        <option value="핸드폰">핸드폰</option>
+                        <option value="체크카드">체크카드</option>
+                    </select>
+                </div>
+                <button id="addBtn" type="button" class='btn btn-dark btn-sm my-new'>충전</button>
+            </div>
+        </form>
+        <button id="payBtn" type="button" class='btn btn-dark'>카카오충전</button>
+        <a id="custom-login-btn" href="javascript:loginWithKakao()">
+            <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" style="display:none"/></a>
+    </div>
+    <!-- <div class="right-inner"></div> -->
+</div>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- Container 끝 -->
+</body>
+</html>

@@ -29,8 +29,6 @@ public class MemberController {
 
     private final CommonCodeService commonCodeService;
 
-
-
     @GetMapping("/admin/member/getList")
     public String memberGetList(Model model){
         List<Member> memberList =  memberService.getMemberList();
@@ -51,6 +49,7 @@ public class MemberController {
 
     @PostMapping("/member/signUp")
     public String saveMember(@RequestParam(name ="file") MultipartFile file, @Valid MemberDTO memberDTO, BindingResult bindingResult) throws Exception{
+
         if(bindingResult.hasErrors()){
             return "/member/signUp";
         }

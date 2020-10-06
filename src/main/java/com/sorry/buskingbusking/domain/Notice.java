@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.naming.Context;
 import javax.persistence.*;
@@ -12,13 +14,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Notice {
+public class Notice extends AuditingEntity {
 
     @Id
     @Column(name = "notice_id")
@@ -29,7 +33,7 @@ public class Notice {
 
     private String noticeContents;
 
-    private Integer viewCnt;
+    private Integer viewCnt = 0;
 
     private LocalDateTime regDt;
 
@@ -38,6 +42,9 @@ public class Notice {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
+
+    @OneToMany
+    private List<CommonFile> fileList = new ArrayList<>();
 
     @Builder
     public Notice(Long id,String noticeTitle,String noticeContents, Integer viewCnt, LocalDateTime regDt, LocalDateTime updDt, Member member) {
