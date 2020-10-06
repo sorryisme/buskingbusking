@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +32,11 @@ public class NoticeDTO {
 
     private Member member;
 
+    private List<MultipartFile> noticeFileList = new ArrayList<>();
+
+    public void addFile(MultipartFile file){
+        this.noticeFileList.add(file);
+    }
 
     public Notice toEntity(){
         return Notice.builder()

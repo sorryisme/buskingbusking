@@ -38,23 +38,13 @@ public class PerformanceServiceImpl implements PerformanceService {
         Performance performance = performanceDTO.toEntity();
         List<MultipartFile> fileList = performanceDTO.getCommonFileList();
 
-      /*  fileList.forEach(file -> {
-            try{
-                CommonFile commonFile = new CommonFile();
-                commonFile.saveFileList(file);
-                CommonFile savedFile = commonFileRepository.save(commonFile);
-                performance.getFileList().add(savedFile);
-            } catch (IOException ex){
-                throw new Exception(ex);
-            }
-        });*/
-
         for(MultipartFile files : fileList){
             CommonFile commonFile = new CommonFile();
             commonFile.saveFileList(files);
             CommonFile savedFile = commonFileRepository.save(commonFile);
             performance.getFileList().add(savedFile);
         }
+
         Performance savedPerformance =  performanceRepository.save(performance);
         return savedPerformance.getId();
     }
