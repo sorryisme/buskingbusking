@@ -4,6 +4,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,9 +28,9 @@ public class FileUtil {
         return fileName.substring(dotPosition);
     }
 
-    private static void checkAndMakeDir(File file){
+    private static void checkAndMakeDir(File file) throws IOException{
         if(!file.exists()){
-            file.mkdirs();
+            Files.createDirectories(Paths.get(file.getCanonicalPath()));
         }
     }
 
