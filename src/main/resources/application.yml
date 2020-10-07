@@ -1,5 +1,14 @@
 server:
   port: 9999
+  tomcat:
+    #윈도우기반 파일위치 지정
+    accesslog:
+      enabled: true
+      pattern: "%t %a %s \"%r\" %b (%D ms)"
+      directory: log
+      suffix: .log
+      prefix: access
+    basedir: /
 spring:
   datasource:
       url: jdbc:h2:tcp://localhost/~/buskingbusking

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -57,11 +58,8 @@ public class NoticeController {
 
     @PostMapping("/notice/insert")
     public String insertNotice(NoticeDTO noticeDto, @RequestParam(required = false, name = "file") MultipartFile multipartFile) throws Exception{
-
-        OptionalUtil.addNullSafeFile(multipartFile, nullSafeFile -> noticeDto.addFile(nullSafeFile) );
-
+        Optional.ofNullable(multipartFile).ifPresent(noticeDto::addFile);
         Long id = noticeService.insertNotice(noticeDto);
-
         return "redirect:/notice/list";
     }
 

@@ -2,6 +2,7 @@ package com.sorry.buskingbusking.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Context;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,7 +31,7 @@ public class FileUtil {
 
     private static void checkAndMakeDir(File file) throws IOException{
         if(!file.exists()){
-            Files.createDirectories(Paths.get(file.getCanonicalPath()));
+            Files.createDirectories(Paths.get(ContextUtil.getRequest().getServletContext().getRealPath(file.getCanonicalPath())));
         }
     }
 
@@ -38,7 +39,8 @@ public class FileUtil {
         checkAndMakeDir(new File(path));
 
         String fileName = getSaveFileName(file.getOriginalFilename());
-        File saveFile = new File(path + "/" + fileName);
+        File saveFile = new File("C:/"+path + "/" + fileName);
+//        File saveFile = new File(path + "/" + fileName);
         file.transferTo(saveFile);
 
         return fileName;

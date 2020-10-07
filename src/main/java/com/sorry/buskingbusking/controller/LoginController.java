@@ -1,9 +1,7 @@
 package com.sorry.buskingbusking.controller;
 
-import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.dto.MemberDTO;
 import com.sorry.buskingbusking.service.MemberService;
-import com.sun.media.jfxmedia.logging.Logger;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

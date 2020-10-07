@@ -3,6 +3,7 @@ package com.sorry.buskingbusking.setting;
 public enum FileSetting {
 
     MOCK_FILE_PATH("/buskingbusking/test"),
+    NOTICE_PATH("/busking/image/notice"),
     PERFORMANCE_PATH("/buskingbusking/image/performance");
 
     private String value;
