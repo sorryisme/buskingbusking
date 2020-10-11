@@ -81,7 +81,7 @@ public class CommonFileRepositoryTest {
         CommonFile commonFile = new CommonFile();
         commonFile.saveFileList(multipartFile);
         testEntityManager.persist(commonFile);
-        commonFile.deleteFile(commonFile.getFullPath());
+        //commonFile.deleteFile(commonFile.getFullPath());
         testEntityManager.flush();
 
         assertThat(commonFile.getDelYn()).isEqualTo("Y");
