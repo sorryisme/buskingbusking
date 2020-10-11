@@ -47,13 +47,13 @@
         <ul class="pagination justify-content-center" th:with="start=${T(Math).floor(noticeList.number/10) * 10 + 1},last=(${start + 9 < noticeList.totalPages ? start + 9 : noticeList.totalPages})" >
             <li class="page-item">
                 <a class="page-link" th:href="@{/notice/list(page=1)}" aria-label="First">
-                    <span aria-hidden="true">First</span>
+                    First
                 </a>
             </li>
 
             <li class="page-item" th:class="${noticeList.first} ? 'disabled'">
                 <a class="page-link" th:href="${noticeList.first} ? '#' : @{/notice/list(page=${noticeList.number})}" aria-label="Previous">
-                    <span aria-hidden="true">&lt;</span>
+                    &lt;
                 </a>
             </li>
 
@@ -63,13 +63,13 @@
 
             <li class="page-item" th:class="${noticeList.last} ? 'disabled'">
                 <a class="page-link" th:href="${noticeList.last} ? '#' : @{/notice/list(page=${noticeList.number + 2})}" aria-label="Next">
-                    <span aria-hidden="true">&gt;</span>
+                    &gt;
                 </a>
             </li>
 
             <li class="page-item">
                 <a class="page-link" th:href="@{/notice/list(page=${noticeList.totalPages})}" aria-label="Last">
-                    <span aria-hidden="true">Last</span>
+                    Last
                 </a>
             </li>
 

@@ -33,7 +33,7 @@ public class Notice extends AuditingEntity {
 
     private String noticeContents;
 
-    private Integer viewCnt = 0;
+    private Integer viewCnt;
 
     private LocalDateTime regDt;
 
@@ -62,6 +62,10 @@ public class Notice extends AuditingEntity {
         if(hasCookie()){
            return;
         }
+
+       /* if(viewCnt == null){
+            viewCnt = 0;
+        }*/
 
         this.viewCnt++;
         addCookieNoticeSeq();

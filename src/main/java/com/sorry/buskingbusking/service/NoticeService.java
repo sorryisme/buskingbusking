@@ -16,5 +16,6 @@ public interface NoticeService {
 
     Long insertNotice(NoticeDTO noticeDTO) throws Exception;
 
+    void deleteNotice(NoticeDTO noticeDTO) throws Exception;
 
 }

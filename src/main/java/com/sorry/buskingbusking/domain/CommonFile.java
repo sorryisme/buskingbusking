@@ -62,8 +62,8 @@ public class CommonFile {
         return filePath + "/" + fileSaveName;
     }
 
-    public void deleteFile(String filePath) throws IOException {
-        FileUtil.deleteMultipartFile(filePath);
+    public void deleteFile() throws IOException {
+        FileUtil.deleteMultipartFile(this.filePath);
         this.delYn = "Y";
     }
 

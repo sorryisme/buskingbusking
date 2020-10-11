@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +57,12 @@ public class NoticeController {
     public String insertNotice(NoticeDTO noticeDto, @RequestParam(required = false, name = "file") MultipartFile multipartFile) throws Exception{
         Optional.ofNullable(multipartFile).ifPresent(noticeDto::addFile);
         Long id = noticeService.insertNotice(noticeDto);
+        return "redirect:/notice/list";
+    }
+
+    @DeleteMapping("/notice/delete")
+    public String deleteNotice(NoticeDTO noticeDTO) throws Exception {
+        noticeService.deleteNotice(noticeDTO);
         return "redirect:/notice/list";
     }
 

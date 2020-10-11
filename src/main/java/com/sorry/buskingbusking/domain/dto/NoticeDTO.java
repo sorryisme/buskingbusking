@@ -24,7 +24,7 @@ public class NoticeDTO {
 
     private String noticeContents;
 
-    private Integer viewCnt;
+    private Integer viewCnt = 0;
 
     private LocalDateTime regDt;
 

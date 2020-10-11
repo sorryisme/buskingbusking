@@ -66,4 +66,17 @@ public class NoticeServiceImpl implements NoticeService {
         Notice savedNotice = noticeRepository.save(notice);
         return savedNotice.getId();
     }
+
+    @Override
+    public void deleteNotice(NoticeDTO noticeDTO) throws Exception {
+
+        Notice notice = noticeRepository.getOne(noticeDTO.getId());
+        List<CommonFile> files = notice.getFileList();
+
+        for(CommonFile commonFile : files) {
+            commonFile.deleteFile();
+        }
+
+        noticeRepository.delete(noticeDTO.toEntity());
+    }
 }
