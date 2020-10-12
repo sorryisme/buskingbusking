@@ -5,6 +5,7 @@
     <title>공연정보</title>
     <link rel='stylesheet' href='/js/lib/bootstrap-4.4.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='/css/common/common.css'>
+
     <style>
 
         .map_wrap, .map_wrap * {
@@ -36,7 +37,7 @@
             left: 0;
             bottom: 0;
             width: 610px;
-            hight: 80px;
+            height: 80px;
             margin: 10px 0 30px 10px;
             padding: 5px;
             overflow-y: auto;
@@ -69,14 +70,20 @@
 <div class='container'>
 
     <h3>공연 등록</h3>
+    <div id="hiddenBox">
+        <input id='no' type='hidden' name='no'>
+        <input id='artistNo' type='hidden' name='artist.no'>
+        <input id='mapx' type='hidden' name='mapx'  >
+        <input id='mapy' type='hidden' name='mapy'>
+        <input id='regDate' type='hidden' name='regDate'>
+        <input id='viewCount' type='hidden' name='viewCount'>
+    </div>
 
     <div class="row">
         <div class="col-md-7">
             <div class="map_wrap">
-                <div id="map" class="mapDiv">
-                </div>
-                <div id="menu_wrap" class="menu_wrap">
-                    <div >
+                <div id="map" class="mapDiv"></div>
+                    <div id="menu_wrap" class="menu_wrap"><div>
                         <div>
                             키워드 : <input type="text" value="" id="locName" name="locName" size="15">
                             <button id="mapSearchBtn" type="button">검색</button>
@@ -90,122 +97,98 @@
             </div>
         </div> <!-- map 영역-->
 
+            <div class='col-md-5'>
+                <div class='form-group'>
+                    <label for='mapAddress'>공연장소</label>
+                    <input class='form-control' id='mapAddress' type='text' name='location'>
+                </div>
 
+                <div class='form-group'>
+                    <label for='entryDate'>공연날짜</label>
+                    <input class='form-control' readonly id='entryDate' type='text' name='entryDate'>
+                    <div class="input-group-append">
+                        <a href='entryDate'><img class='addon' src='/image/performance/calendar.png' width='50px' height='50px'></a>
+                    </div>
+                </div>
 
-        <input class='form-control' readonly id='no' type='hidden' name='no'>
+                <div class='form-group'>
+                    <label for='title'>제목</label>
+                    <input class='form-control' id='title' type='text' name='title'>
+                </div>
 
-        <div class='col-md-5'>
-            <div class='form-group'>
-                <label for='location'>공연장소</label>
-                <input class='form-control' id='mapAddress' type='text' name='location'>
-            </div>
+                <div class='form-group artistInput'>
+                    <label for='artistName'>아티스트 이름</label>
+                    <button id="findBtn" type="button" class='btn btn-dark btn-sm searchBtn' data-toggle="modal" data-target="#exampleModalCenter">검색</button>
+                    <input class='form-control' id='artistName' type='text' name='artist.name' readonly="readonly">
+                </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
 
-            <div class='form-group'>
-                <label for='entryDate'>공연날짜</label>
-                <input class='form-control' readonly id='entryDate' type='text' name='entryDate'>
-                <a href='#entryDate'><img class='addon' src='/image/performance/calendar.png' width='50px' height='50px'></a>
-            </div>
+                            <div class="modal-body">
+                                <h2>아티스트 검색</h2>
+                                <nav class="navbar navbar-light justify-content-between">
+                                    <form class="form-inline">
+                                        <input d="words" name="words" class="form-control form-control-xs" type="search" placeholder="이름을 입력하세요" aria-label="Search" style="width: 350px; height: 30px;">
+                                        <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                                    </form>
+                                </nav>
 
-            <div class='form-group'>
-                <label for='title'>제목</label>
-                <input class='form-control' id='title' type='text' name='title'>
-            </div>
+                                <table id="list" class='table table-hover'>
+                                    <thead>
+                                    <tr><th>번호</th><th>사진</th><th>아티스트명</th></tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
 
-            <div class='form-group artistInput'>
-                <label for='artistName'>아티스트 이름</label>
-                <button id="findBtn" type="button" class='btn btn-dark btn-sm searchBtn' data-toggle="modal" data-target="#exampleModalCenter">검색</button>
-                <input class='form-control' readonly id='artistName' type='text' name='artist.name'>
-            </div>
-
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                        <div class="modal-body">
-                            <h2>아티스트 검색</h2>
-                            <nav class="navbar navbar-light justify-content-between">
-                                <form class="form-inline">
-                                    <input id="words" name="words" class="form-control form-control-xs" type="search"
-                                           style="width: 350px; height: 30px;" placeholder="이름을 입력하세요"
-                                           aria-label="Search">
-                                    <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0" type="button">Search</button>
-                                </form>
-                            </nav>
-
-                            <table id="list" class='table table-hover'>
-                                <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>사진</th>
-                                    <th>아티스트명</th>
-                                </tr>
-                                </thead>
-
-                                <tbody></tbody>
-                            </table>
-
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item"><a id="prevBtn" class="page-link"
-                                                             tabindex="-1">이전</a></li>
-
-                                    <li class="page-item"><a id="currBtn" class="page-link"
-                                                             href="#">1</a></li>
-
-                                    <li class="page-item "><a id="nextBtn"
-                                                              class="page-link" tabindex="0">다음</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="closeBtn" type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button>
-
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item"><a id="prevBtn" class="page-link" tabindex="-1">이전</a></li>
+                                        <li class="page-item"><a id="currBtn" class="page-link" href="#">1</a></li>
+                                        <li class="page-item "><a id="nextBtn" class="page-link" tabindex="0">다음</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="closeBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <!-- 모달 종료 -->
 
+                <div class='form-group'>
+                    <label for='genre'>공연장르</label>
+                    <select class="custom-select" id="genre" name="genre" value=''>
+                        <option selected>선택</option>
+                        <option value='솔로'>솔로</option>
+                        <option value='그룹'>그룹</option>
+                        <option value='발라드'>발라드</option>
+                        <option value='R & B'>R & B</option>
+                        <option value='락'>락</option>
+                        <option value='랩'>랩</option>
+                        <option value='개그'>개그</option>
+                        <option value='마술'>마술</option>
+                    </select>
+                </div>
 
-            <div class='form-group'>
-                <label for='genre'>공연장르</label> <select class="custom-select"
-                                                        id="genre" name="genre" value=''>
-                <option selected></option>
-                <option value='솔로'>솔로</option>
-                <option value='그룹'>그룹</option>
-                <option value='발라드'>발라드</option>
-                <option value='R & B'>R & B</option>
-                <option value='락'>락</option>
-                <option value='랩'>랩</option>
-                <option value='개그'>개그</option>
-                <option value='마술'>마술</option>
-            </select>
-            </div>
+                <div class='form-group'>
+                    <label for='detailDesc'>내용</label>
+                    <textarea class='form-control' id='detailDesc' name='detailDesc'></textarea>
+                </div>
 
-            <div class='form-group'>
-                <label for='detailDesc'>내용</label>
-                <textarea class='form-control' id='detailDesc' name='detailDesc'></textarea>
-            </div>
-
-            <input class='form-control' readonly id='artistNo' type='hidden'
-                   name='artist.no'> <input class='form-control' readonly
-                                            id='mapx' type='hidden' name='mapx'> <input
-                class='form-control' readonly id='mapy' type='hidden' name='mapy'>
-
-            <input class='form-control' readonly id='regDate' type='hidden' name='regDate'>
-            <input class='form-control' readonly id='viewCount' type='hidden' name='viewCount'>
-
-            <div class='form-group buttonlist'><button id="updateBtn" type="button" class='btn btn-dark btn-sm my-view'>변경</button>
-                <button id="deleteBtn" type="button" class='btn btn-dark btn-sm my-view'>삭제</button>
-                <button id="addBtn" type="button" class='btn btn-dark btn-sm my-new'>추가</button>
-            </div>
-            </form>
+                <div class='form-group'>
+                    <button id="updateBtn" type="button" class='btn btn-dark btn-sm my-view'>변경</button>
+                    <button id="deleteBtn" type="button" class='btn btn-dark btn-sm my-view'>삭제</button>
+                    <button id="addBtn" type="button" class='btn btn-dark btn-sm my-new'>추가</button>
+                </div>
+            <!--</form>-->
         </div>
-    </div>
-</div>
+    </div> <!-- row -->
+</div> <!-- container-->
 
 
 
@@ -215,7 +198,9 @@
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=l3jstra059&submodules=geocoder"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/lib/bootstrap-4.4.1/js/bootstrap.js"></script>
 <script>
+
     $(function(){
         // var map = new naver.maps.Map("map", {
         //     center: new naver.maps.Point(37.3595704, 127.105399),
