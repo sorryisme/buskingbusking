@@ -9,22 +9,32 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Configuration
-//@EnableWebMvc
+@Configuration
+@EnableWebMvc
 public class Configurations implements WebMvcConfigurer {
 
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthIntercepetor())
                 .addPathPatterns("/*")
                 .excludePathPatterns("/auth/*")
                 .excludePathPatterns("/index")
                 .excludePathPatterns("/");
-    }
+    }*/
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("classpath:/static/css/")
+                .setCachePeriod(60 * 60);
+
+        registry.addResourceHandler("/image/**")
+                .addResourceLocations("classpath:/static/image/")
+                .setCachePeriod(60 * 60);
+
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations("classpath:/static/js/")
+                .setCachePeriod(60 * 60);
     }
 
 }

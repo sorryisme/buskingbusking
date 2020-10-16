@@ -32,6 +32,10 @@ public class Member extends AuditingEntity {
     @Column(length = 30)
     private String nickName;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus;
+
     private String mobile;
 
     private String msgYn;
@@ -48,6 +52,11 @@ public class Member extends AuditingEntity {
 
     @OneToMany(mappedBy ="member", fetch = FetchType.LAZY)
     private List<PerformanceRequest> performanceRequestList = new ArrayList<>();
+
+    public Member setUnused(){
+        this.userStatus = UserStatus.UNUSED;
+        return this;
+    }
 
     @Builder
     public Member(Long id,String email, CommonFile profile, String password, String nickName, String mobile, String msgYn, String msgId, String delYn, Address address) {
