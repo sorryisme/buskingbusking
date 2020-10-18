@@ -8,6 +8,7 @@ import com.sorry.buskingbusking.domain.CommonCode;
 import com.sorry.buskingbusking.domain.Member;
 import com.sorry.buskingbusking.domain.Notice;
 import com.sorry.buskingbusking.domain.Performance;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +24,7 @@ import java.util.stream.IntStream;
 
 @SpringBootApplication
 @EnableJpaAuditing
+@EnableBatchProcessing
 public class BuskingbuskingApplication {
 
 	public static void main(String[] args) {
