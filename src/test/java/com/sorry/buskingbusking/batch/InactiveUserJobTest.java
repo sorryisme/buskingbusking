@@ -34,7 +34,7 @@ public class InactiveUserJobTest {
     public void 휴면계정_테스트 () throws Exception {
         JobExecution jobExecution = jobLauncherTestUtils.launchJob();
         assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
-        assertEquals(0, memberRepository.findByModifiedDateBeforeAndStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.UNUSED).size());
+        assertEquals(0, memberRepository.findByModifiedDateBeforeAndUserStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.UNUSED).size());
     }
 
 }

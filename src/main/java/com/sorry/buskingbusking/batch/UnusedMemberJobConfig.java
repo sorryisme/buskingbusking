@@ -47,7 +47,7 @@ public class UnusedMemberJobConfig {
     @StepScope
     public QueueItemReader<Member> unusedMemberReader(){
         List<Member> oldUsers =
-                    memberRepository.findByModifiedDateBeforeAndStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.USE);
+                    memberRepository.findByModifiedDateBeforeAndUserStatusEquals(LocalDateTime.now().minusYears(1), UserStatus.USE);
         return new QueueItemReader<>(oldUsers);
     }
 

@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findMemberByEmailAndPassword(String email, String password);
-    List<Member> findByModifiedDateBeforeAndStatusEquals(LocalDateTime localDateTime, UserStatus userStatus);
+    List<Member> findByModifiedDateBeforeAndUserStatusEquals(LocalDateTime localDateTime, UserStatus userStatus);
 }
