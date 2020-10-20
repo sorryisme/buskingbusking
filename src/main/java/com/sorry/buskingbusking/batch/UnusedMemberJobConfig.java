@@ -28,7 +28,7 @@ public class UnusedMemberJobConfig {
     @Bean
     public Job unusedMemberJob(JobBuilderFactory jobBuilderFactory, Step unusedJobStep) {
         return jobBuilderFactory.get("unusedMemberJob")
-                                .preventRestart()
+                                //.preventRestart()
                                 .start(unusedJobStep)
                                 .build();
     }

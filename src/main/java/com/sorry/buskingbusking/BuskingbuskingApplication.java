@@ -122,7 +122,7 @@ public class BuskingbuskingApplication {
 		};
 	}
 
-	@Bean
+	//@Bean
 	public CommandLineRunner createCode(CommonCodeRepository commonCodeRepository) throws Exception{
 		return (args)->{
 
