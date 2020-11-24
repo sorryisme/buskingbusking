@@ -10,6 +10,8 @@ server:
       prefix: access
     basedir: /
 spring:
+  resources:
+    add-mappings: false
   datasource:
       url: jdbc:h2:tcp://localhost/~/buskingbusking
       username: sa

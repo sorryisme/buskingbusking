@@ -23,7 +23,6 @@ import java.util.stream.IntStream;
 
 
 @SpringBootApplication
-@EnableJpaAuditing
 @EnableBatchProcessing
 public class BuskingbuskingApplication {
 

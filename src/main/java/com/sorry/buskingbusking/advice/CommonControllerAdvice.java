@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +17,14 @@ public class CommonControllerAdvice {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handlerRuntimeException(){
+    public String handlerRuntime500Exception(){
+        return "error/commonException";
+    }
+
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handlerRuntime404Exception(){
         return "error/commonException";
     }
 
@@ -32,8 +40,5 @@ public class CommonControllerAdvice {
                     .build();
             model.addAttribute("loginInfo", loginDTO);
         }
-
-
-
     }
 }
